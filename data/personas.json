@@ -1,0 +1,43 @@
+[
+  {
+    "id": "maya",
+    "display_name": "Maya",
+    "email": "maya@example.com",
+    "region": "US",
+    "consent_personalisation": true,
+    "tests": ["main demo", "budget objection then return", "buying context", "conflict on budget", "forget one memory"],
+    "visit_1": ["Hi! I brew with a French press.", "I hate sour coffee, I like chocolatey notes.", "Please keep it under $20 a bag.", "Hmm, that's too expensive for me right now, maybe later."],
+    "visit_2": ["Anything new for me?"],
+    "later": ["I'm also buying for my office, about 10 people.", "Actually I'm happy to pay up to $35 now."]
+  },
+  {
+    "id": "leo",
+    "display_name": "Leo",
+    "email": "leo@example.com",
+    "region": "US",
+    "consent_personalisation": true,
+    "tests": ["leakage vs Maya", "keyword retrieval (Guji)", "hedged memory"],
+    "visit_1": ["I use an AeroPress.", "I love fruity, bright coffees.", "I can spend up to $30.", "I loved the Ethiopia Guji last time.", "Maybe I'll try espresso someday."],
+    "visit_2": ["Is the Guji back in stock?", "What's my budget?"]
+  },
+  {
+    "id": "ana",
+    "display_name": "Ana",
+    "email": "ana@example.eu",
+    "region": "EU",
+    "consent_personalisation": true,
+    "tests": ["C2 sensitive handling", "forget everything", "data export"],
+    "visit_1": ["I need decaf only because of my heart condition.", "I brew pour-over."],
+    "visit_2": ["Suggest a coffee for me.", "Please forget everything you know about me."]
+  },
+  {
+    "id": "sam",
+    "display_name": "Sam",
+    "email": "sam@example.com",
+    "region": "US",
+    "consent_personalisation": true,
+    "tests": ["conflict on brew method", "small talk dropped", "card number blocked"],
+    "visit_1": ["I use a moka pot and like strong, dark coffee.", "It's raining here lol.", "My card is 4111 1111 1111 1111, can you save it?"],
+    "visit_2": ["I switched to pour-over recently.", "I'm out of coffee, what should I get?"]
+  }
+]
