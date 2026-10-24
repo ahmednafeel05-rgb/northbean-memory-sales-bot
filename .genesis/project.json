@@ -1,0 +1,749 @@
+{
+  "schema_version": 2,
+  "project": {
+    "name": "Northbean Memory Sales Bot",
+    "mode": "init",
+    "profile": "prototype",
+    "objective": "AI sales assistant for fictional D2C coffee brand Northbean Coffee, with an intelligent memory system that remembers each logged-in shopper across visits (taste, brew method, budget, objections), lets them see/correct/delete memories (GDPR-first), and proves quality with an evaluation. The memory layer is the real product; the sales chat is the stage it performs on.",
+    "constraints": [],
+    "non_goals": [],
+    "trust_boundary": "local repository",
+    "created_at": "2026-10-23T05:42:41.284Z",
+    "updated_at": "2026-10-24T11:26:39.143Z"
+  },
+  "policy": {
+    "ponytail": "full",
+    "autonomy": "human-in-the-loop",
+    "learned_rule_promotion": "human-required",
+    "cleanup": "propose-only",
+    "traces": {
+      "storage": "local",
+      "commit_raw": false,
+      "redact_secrets": true
+    }
+  },
+  "lifecycle": {
+    "phase": "build",
+    "status": "active",
+    "active_task": "S3",
+    "blocker": null,
+    "next_action": "Run the task pre-flight."
+  },
+  "commands": {},
+  "workflow": {
+    "type": "new-product",
+    "started_at": "2026-10-23T05:42:41.287Z",
+    "spec_check": {
+      "at": "2026-10-23T05:43:42.045Z",
+      "source_hash": "94e9d41b8a511f77d31d6a6815867d77ddde20ad7eb786b56835a483a7c5c69e",
+      "requirements": [
+        "AC-1",
+        "AC-2",
+        "AC-3",
+        "AC-4",
+        "AC-5",
+        "AC-6",
+        "AC-7",
+        "AC-8",
+        "FR-1",
+        "FR-10",
+        "FR-2",
+        "FR-3",
+        "FR-4",
+        "FR-5",
+        "FR-6",
+        "FR-7",
+        "FR-8",
+        "FR-9",
+        "NFR-1",
+        "NFR-2",
+        "NFR-3",
+        "NFR-4",
+        "NFR-5"
+      ]
+    },
+    "plan_check": {
+      "at": "2026-10-23T06:22:18.210Z",
+      "source_hash": "487b30fc813ff4c44500050952e7c99833eeeac2d1e39b356939acab20663f67"
+    },
+    "plan_approval": {
+      "human": "Naf",
+      "reason": "Reviewed PLAN.md (S1-S8); matches brief section 13; approved as-is.",
+      "at": "2026-10-23T06:48:58.997Z",
+      "source_hash": "487b30fc813ff4c44500050952e7c99833eeeac2d1e39b356939acab20663f67"
+    }
+  },
+  "artifacts": [
+    {
+      "id": "SPEC-1",
+      "type": "specification",
+      "path": "SPEC.md",
+      "status": "approved",
+      "requirements": [
+        "AC-1",
+        "AC-2",
+        "AC-3",
+        "AC-4",
+        "AC-5",
+        "AC-6",
+        "AC-7",
+        "AC-8",
+        "FR-1",
+        "FR-10",
+        "FR-2",
+        "FR-3",
+        "FR-4",
+        "FR-5",
+        "FR-6",
+        "FR-7",
+        "FR-8",
+        "FR-9",
+        "NFR-1",
+        "NFR-2",
+        "NFR-3",
+        "NFR-4",
+        "NFR-5"
+      ],
+      "source_hash": "94e9d41b8a511f77d31d6a6815867d77ddde20ad7eb786b56835a483a7c5c69e",
+      "approval": {
+        "human": "Naf",
+        "reason": "Spec matches docs/DESIGN_BRIEF.md; approved as-is, no changes requested.",
+        "at": "2026-10-23T06:21:17.070Z",
+        "source_hash": "94e9d41b8a511f77d31d6a6815867d77ddde20ad7eb786b56835a483a7c5c69e"
+      }
+    }
+  ],
+  "assumptions": [],
+  "invariants": [
+    {
+      "id": "INVARIANT-1af903ad",
+      "text": "I1: One customer's memory never returned for another customer",
+      "source": "docs/DESIGN_BRIEF.md §10",
+      "recorded_at": "2026-10-23T05:43:59.623Z",
+      "paths": [],
+      "tags": []
+    },
+    {
+      "id": "INVARIANT-d88b49e2",
+      "text": "I2: Deleted memories never retrieved; content/embedding nulled immediately",
+      "source": "docs/DESIGN_BRIEF.md §10",
+      "recorded_at": "2026-10-23T05:44:00.164Z",
+      "paths": [],
+      "tags": []
+    },
+    {
+      "id": "INVARIANT-576fc886",
+      "text": "I3: Memory-layer failure never blocks a chat reply",
+      "source": "docs/DESIGN_BRIEF.md §10",
+      "recorded_at": "2026-10-23T05:44:00.752Z",
+      "paths": [],
+      "tags": []
+    },
+    {
+      "id": "INVARIANT-4694157e",
+      "text": "I4: Every active memory carries non-null provenance/source",
+      "source": "docs/DESIGN_BRIEF.md §10",
+      "recorded_at": "2026-10-23T05:44:01.524Z",
+      "paths": [],
+      "tags": []
+    },
+    {
+      "id": "INVARIANT-0e248126",
+      "text": "I5: No invented products, prices, or discounts; discount never exceeds cap",
+      "source": "docs/DESIGN_BRIEF.md §10",
+      "recorded_at": "2026-10-23T05:44:02.144Z",
+      "paths": [],
+      "tags": []
+    },
+    {
+      "id": "INVARIANT-2e63f7f3",
+      "text": "I6: No personalisation consent -> zero memory rows stored",
+      "source": "docs/DESIGN_BRIEF.md §10",
+      "recorded_at": "2026-10-23T05:44:02.770Z",
+      "paths": [],
+      "tags": []
+    },
+    {
+      "id": "INVARIANT-1a5a40f8",
+      "text": "I7: No C3 PII (cards, passwords, addresses, phones, emails, IDs) ever stored in memories or audit log",
+      "source": "docs/DESIGN_BRIEF.md §10",
+      "recorded_at": "2026-10-23T05:44:03.481Z",
+      "paths": [],
+      "tags": []
+    }
+  ],
+  "decisions": [
+    {
+      "id": "DECISION-fcfb7398",
+      "title": "Stack",
+      "text": "Next.js frontend, FastAPI backend, PostgreSQL+pgvector, LiteLLM (Gemini/Groq), Presidio for PII, Docker Compose. One backend service, solo builder.",
+      "status": "accepted",
+      "source": "docs/DESIGN_BRIEF.md §17",
+      "recorded_at": "2026-10-23T05:44:12.957Z",
+      "paths": [],
+      "tags": []
+    },
+    {
+      "id": "DECISION-78e5f19c",
+      "title": "Identity model",
+      "text": "Logged-in customers only (simple login/user switcher: Maya, Leo, Ana, Sam). Every memory keyed to customer_id; no anonymous merge.",
+      "status": "accepted",
+      "source": "docs/DESIGN_BRIEF.md §0",
+      "recorded_at": "2026-10-23T05:44:13.511Z",
+      "paths": [],
+      "tags": []
+    },
+    {
+      "id": "DECISION-acd25f2b",
+      "title": "LLM provider",
+      "text": "Free tier only: Gemini/Groq via LiteLLM, with retry/backoff and fallback provider. Synthetic data only, since free tiers may train on prompts.",
+      "status": "accepted",
+      "source": "docs/DESIGN_BRIEF.md §0",
+      "recorded_at": "2026-10-23T05:44:14.199Z",
+      "paths": [],
+      "tags": []
+    },
+    {
+      "id": "DECISION-c8944d71",
+      "title": "Region and governance",
+      "text": "US + EU, GDPR-first demo-level governance: consent, access, export, correct, delete, retention built in from v1.",
+      "status": "accepted",
+      "source": "docs/DESIGN_BRIEF.md §0",
+      "recorded_at": "2026-10-23T05:44:14.747Z",
+      "paths": [],
+      "tags": []
+    },
+    {
+      "id": "DECISION-5b3959ac",
+      "title": "Open decisions defaults",
+      "text": "Discount: 10% first-order code, once per customer. Retention: messages 90 days, archived memories 12 months. Human handoff: mock support inbox page. Brand: Northbean Coffee. These defaults apply unless Naf changes them.",
+      "status": "accepted",
+      "source": "docs/DESIGN_BRIEF.md §15",
+      "recorded_at": "2026-10-23T05:44:15.363Z",
+      "paths": [],
+      "tags": []
+    },
+    {
+      "id": "DECISION-b41cf85d",
+      "title": "Embedding model pinned (ADR-003)",
+      "text": "Gemini text-embedding-004, 768 dimensions. memories.embedding is vector(768) in db/schema.sql. Changing later requires a migration + re-embed script.",
+      "status": "accepted",
+      "source": "adr/003-embedding-model.md",
+      "recorded_at": "2026-10-23T06:59:34.699Z",
+      "paths": [],
+      "tags": []
+    },
+    {
+      "id": "DECISION-1f3e53ee",
+      "title": "Postgres + pgvector, one database (ADR-001)",
+      "text": "One PostgreSQL (pgvector/pgvector:pg16) holds relational tables and memories.embedding; hybrid retrieval (HNSW + GIN tsvector) runs in SQL, no separate vector DB.",
+      "status": "accepted",
+      "source": "adr/001-postgres-pgvector.md",
+      "recorded_at": "2026-10-23T06:59:35.591Z",
+      "paths": [],
+      "tags": []
+    }
+  ],
+  "knowledge": [],
+  "tasks": [
+    {
+      "id": "SPEC-1",
+      "outcome": "Produce an approved, implementation-ready product specification",
+      "state": "done",
+      "risk": "medium",
+      "owner": null,
+      "scope": [
+        "SPEC.md"
+      ],
+      "dependencies": [],
+      "requirements": [],
+      "gates": [
+        {
+          "id": "independent-review",
+          "command": "",
+          "mandatory": true,
+          "status": "pass",
+          "evidence": {
+            "human": "Naf",
+            "reason": "Spec matches docs/DESIGN_BRIEF.md; approved as-is, no changes requested.",
+            "source_hash": "4ad090ca20f80e446ab067fc2cd8c2709f19d94b41a1daa06bbc2b3b54f35459",
+            "observed_at": "2026-10-23T06:21:17.070Z"
+          },
+          "kind": "review"
+        }
+      ],
+      "next_action": "Interview the human, record durable context, and replace every placeholder in SPEC.md.",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-10-23T05:42:41.287Z",
+      "updated_at": "2026-10-23T06:21:17.070Z"
+    },
+    {
+      "id": "S1",
+      "outcome": "Foundation: Docker Compose (Postgres+pgvector, api, web), schema, RLS, seed products+personas",
+      "state": "done",
+      "risk": "low",
+      "owner": null,
+      "scope": [],
+      "dependencies": [],
+      "requirements": [
+        "FR-3",
+        "AC-1",
+        "AC-4"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [],
+      "gates": [
+        {
+          "id": "demo",
+          "kind": "command",
+          "command": "pytest tests/test_s1_foundation.py",
+          "mandatory": true,
+          "status": "pass",
+          "evidence": {
+            "path": ".genesis/evidence/S1-demo-6da55ad0-a178-4fee-862b-1ba20ed57358.json",
+            "hash": "cfac62045706b89925bbc684c2445602a801dbe28e6ab40cc6e535163cf1f715",
+            "source_hash": "86cba04594fec63188736d74df8264b6d2789186b9a122a5e6db38e484b363a3",
+            "config_hash": "b6b5d0fba36d4bc65b86c2e34d21a0fb6cbf92ccac3e6fe2a6c7f3919cc2aeb0",
+            "observed_at": "2026-10-24T10:46:25.059Z"
+          }
+        }
+      ],
+      "next_action": "Run the task pre-flight.",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-10-23T06:21:59.116Z",
+      "updated_at": "2026-10-24T10:46:30.878Z",
+      "base_manifest": {
+        ".gitignore": "038be984813ba608ec5f0764c8f3a6f07dd71e25036b73946aa4b3aa4cf665ef",
+        "CLAUDE.md": "a1e154eeebc65e99f8cafec66e6b5b5d39ce2ee25cbca9a823ff8588d75dff0a",
+        "HANDOFF.md": "013326d5642dc15c912d90a1128ad4738c0ebc260a54488e033ce76daa2561e0",
+        "SPEC.md": "78eb7b3342f5b0d0398522c6207f4f23e48ca946695f6773386ae601a2f47897",
+        "data/personas.json": "756e2f15cecf13f6b859ee67404504e5a450e66c2be036a68a550b7f60abb755",
+        "data/products.json": "45b6e0fb510090c54a58bf80a947130f198a3a9e66db909f263938e1b24da222",
+        "docs/DESIGN_BRIEF.md": "5d9274ee25084e30c60d33c5313ce94856de9a01731bb53d5c2298b401c4f53a",
+        "docs/SESSION_LOG.md": "b576605a6c9148daf8aebe2555518086c43b131202b3d18de26f620076f6e028",
+        "evals/golden.jsonl": "000f02e3d290f62a2959d106890b30d04e79a8ddd5f3ade79e88a07bf2d16ee6",
+        "test.py": "4b3c9b1bc02d1ab8b48c1bc3c2c0fbcdd141ec7774b6c37f87b5c10290c49208"
+      }
+    },
+    {
+      "id": "S2",
+      "outcome": "Chat + tools: FastAPI /chat, LiteLLM client with fallback, sales agent with tools, reply checker",
+      "state": "done",
+      "risk": "low",
+      "owner": null,
+      "scope": [],
+      "dependencies": [],
+      "requirements": [
+        "FR-5",
+        "AC-5",
+        "NFR-4"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [],
+      "gates": [
+        {
+          "id": "demo",
+          "kind": "command",
+          "command": "pytest tests/test_s2_chat_tools.py",
+          "mandatory": true,
+          "status": "pass",
+          "evidence": {
+            "path": ".genesis/evidence/S2-demo-8296113c-6f7d-4289-b703-b3d4ee0e2c34.json",
+            "hash": "617e70c9984ae80dc842248540c8438543ff8ae9c324a5df24e1fba96121fd61",
+            "source_hash": "7ba5bbca70373395808c62271863e0c4d1bc623f6538a5002bdb02eb3681b220",
+            "config_hash": "2447c7e6aff67094b848e4f50b22806519e629dc6524e19644ab2dd188051383",
+            "observed_at": "2026-10-24T11:26:17.052Z"
+          }
+        }
+      ],
+      "next_action": "Run the task pre-flight.",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-10-23T06:22:09.123Z",
+      "updated_at": "2026-10-24T11:26:32.535Z",
+      "base_manifest": {
+        ".gitignore": "038be984813ba608ec5f0764c8f3a6f07dd71e25036b73946aa4b3aa4cf665ef",
+        "CLAUDE.md": "a1e154eeebc65e99f8cafec66e6b5b5d39ce2ee25cbca9a823ff8588d75dff0a",
+        "HANDOFF.md": "013326d5642dc15c912d90a1128ad4738c0ebc260a54488e033ce76daa2561e0",
+        "SPEC.md": "78eb7b3342f5b0d0398522c6207f4f23e48ca946695f6773386ae601a2f47897",
+        "adr/001-postgres-pgvector.md": "0c96d42cd2bf9f60c917b92131e3c2a30fab6d918ec997581d5b461bbfc91cec",
+        "adr/003-embedding-model.md": "fa496213452c5baacf8034c13c8ab5ad6d9f7b0af57dc0c2735a509d10424d2f",
+        "api/Dockerfile": "981c8eea0046673164346800a587587096486223b953098d2df62cd0ab34006c",
+        "api/app/__init__.py": "78fb5f112b9e331e6d45cc7ba20c364344137c40dce44296fbdbe7854ba5bea2",
+        "api/app/main.py": "03921cc49e5fa066a67b6c3b5fa89da8d93390301bac59a83fcce10337051d6b",
+        "api/requirements.txt": "6a61a99a51dc3aa26fd103a6349982916d770e0a08fe7e7a2e6707cc9da1354f",
+        "data/personas.json": "756e2f15cecf13f6b859ee67404504e5a450e66c2be036a68a550b7f60abb755",
+        "data/products.json": "45b6e0fb510090c54a58bf80a947130f198a3a9e66db909f263938e1b24da222",
+        "db/schema.sql": "52c8bd0eeca022df773c6fb032b89bbe67c848733f137332c24dfea99d08d05f",
+        "db/seed.py": "964c140d339a12db57adde04b538c14bf68e15a98fc588d2348b761a442e0dc3",
+        "docker-compose.yml": "d08d80607a02e2a32fb45ad17f023e6d88e91a20e2d1d9a87bc9fdb92ad9829d",
+        "docs/DESIGN_BRIEF.md": "5d9274ee25084e30c60d33c5313ce94856de9a01731bb53d5c2298b401c4f53a",
+        "docs/SESSION_LOG.md": "b576605a6c9148daf8aebe2555518086c43b131202b3d18de26f620076f6e028",
+        "evals/golden.jsonl": "000f02e3d290f62a2959d106890b30d04e79a8ddd5f3ade79e88a07bf2d16ee6",
+        "requirements-dev.txt": "e951c3a05f08e6edbfd01c9ff477491c03057effdb87ed02370bec5b78198aab",
+        "test.py": "cee0009f8b4976fec3853e4e5a4dc0911439996e224b539cc30ba2514e86eed7",
+        "tests/test_s1_foundation.py": "8ebb4a56c152027a1c4f741074a82d3cc262b174d6896ae49f18b31cc61b1ea9"
+      }
+    },
+    {
+      "id": "S3",
+      "outcome": "Write path: PII filter -> extractor -> evaluator -> dedupe/conflict -> store + audit, async queue",
+      "state": "active",
+      "risk": "low",
+      "owner": null,
+      "scope": [],
+      "dependencies": [],
+      "requirements": [
+        "FR-1",
+        "FR-2",
+        "FR-3",
+        "FR-8",
+        "FR-10",
+        "AC-7"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [],
+      "gates": [
+        {
+          "id": "demo",
+          "kind": "command",
+          "command": "pytest tests/test_s3_write_path.py",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        }
+      ],
+      "next_action": "Run the task pre-flight.",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-10-23T06:22:09.721Z",
+      "updated_at": "2026-10-23T06:22:09.722Z",
+      "base_manifest": {
+        ".gitignore": "038be984813ba608ec5f0764c8f3a6f07dd71e25036b73946aa4b3aa4cf665ef",
+        "CLAUDE.md": "a1e154eeebc65e99f8cafec66e6b5b5d39ce2ee25cbca9a823ff8588d75dff0a",
+        "HANDOFF.md": "013326d5642dc15c912d90a1128ad4738c0ebc260a54488e033ce76daa2561e0",
+        "SPEC.md": "78eb7b3342f5b0d0398522c6207f4f23e48ca946695f6773386ae601a2f47897",
+        "adr/001-postgres-pgvector.md": "0c96d42cd2bf9f60c917b92131e3c2a30fab6d918ec997581d5b461bbfc91cec",
+        "adr/003-embedding-model.md": "fa496213452c5baacf8034c13c8ab5ad6d9f7b0af57dc0c2735a509d10424d2f",
+        "api/Dockerfile": "981c8eea0046673164346800a587587096486223b953098d2df62cd0ab34006c",
+        "api/app/__init__.py": "78fb5f112b9e331e6d45cc7ba20c364344137c40dce44296fbdbe7854ba5bea2",
+        "api/app/agent.py": "8084cc699d3720d697afa621f96fdaf42886b0237a716e216fa5a3076a782a7d",
+        "api/app/llm.py": "71730d10269336545fe405c6b58246a929f6eeb8f95ab27650d64457ef2b5df7",
+        "api/app/main.py": "e886d0ac6b8abd319cd6b6775a3334dd6282625fe7be01885f7bfc2fc34e000b",
+        "api/app/reply_checker.py": "10326a1df4bda8819ab030b00825ccac8946127b55cf40021179ca712e7e9c6d",
+        "api/app/tools.py": "2f260513d9360a6469ed9de8162e3f23a751b99e25d1570b422467a70180de89",
+        "api/requirements.txt": "41c78c9e82f7f61ad9d2c8df51cf9b5b18cb502c472ecd19283efad022e47d88",
+        "data/personas.json": "756e2f15cecf13f6b859ee67404504e5a450e66c2be036a68a550b7f60abb755",
+        "data/products.json": "45b6e0fb510090c54a58bf80a947130f198a3a9e66db909f263938e1b24da222",
+        "db/schema.sql": "52c8bd0eeca022df773c6fb032b89bbe67c848733f137332c24dfea99d08d05f",
+        "db/seed.py": "964c140d339a12db57adde04b538c14bf68e15a98fc588d2348b761a442e0dc3",
+        "docker-compose.yml": "d08d80607a02e2a32fb45ad17f023e6d88e91a20e2d1d9a87bc9fdb92ad9829d",
+        "docs/DESIGN_BRIEF.md": "5d9274ee25084e30c60d33c5313ce94856de9a01731bb53d5c2298b401c4f53a",
+        "docs/SESSION_LOG.md": "b576605a6c9148daf8aebe2555518086c43b131202b3d18de26f620076f6e028",
+        "evals/golden.jsonl": "000f02e3d290f62a2959d106890b30d04e79a8ddd5f3ade79e88a07bf2d16ee6",
+        "requirements-dev.txt": "71f191ba8d88a3310f006677042c8a5dd2e80873ffdf11a2e10f42325e84b410",
+        "test.py": "cee0009f8b4976fec3853e4e5a4dc0911439996e224b539cc30ba2514e86eed7",
+        "tests/test_s1_foundation.py": "8ebb4a56c152027a1c4f741074a82d3cc262b174d6896ae49f18b31cc61b1ea9",
+        "tests/test_s2_chat_tools.py": "b22bd3e0c228e6cc9c4a4755f4b11a8ed81db30776bc5f96dd5f0e0328a2754c"
+      }
+    },
+    {
+      "id": "S4",
+      "outcome": "Read path: always-loaded + hybrid search + scoring + composer + reinforce + retrieval_log",
+      "state": "queued",
+      "risk": "low",
+      "owner": null,
+      "scope": [],
+      "dependencies": [],
+      "requirements": [
+        "FR-4",
+        "NFR-1",
+        "NFR-5"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [],
+      "gates": [
+        {
+          "id": "demo",
+          "kind": "command",
+          "command": "pytest tests/test_s4_read_path.py",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        }
+      ],
+      "next_action": "Run the task pre-flight.",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-10-23T06:22:10.397Z",
+      "updated_at": "2026-10-23T06:22:10.399Z"
+    },
+    {
+      "id": "S5",
+      "outcome": "Frontend: Next.js chat, user switcher, consent prompt, memory panel (sources/scores), ops dashboard",
+      "state": "queued",
+      "risk": "low",
+      "owner": null,
+      "scope": [],
+      "dependencies": [],
+      "requirements": [
+        "FR-6",
+        "FR-7"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [],
+      "gates": [
+        {
+          "id": "demo",
+          "kind": "command",
+          "command": "npm --prefix web run test:e2e",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        }
+      ],
+      "next_action": "Run the task pre-flight.",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-10-23T06:22:11.114Z",
+      "updated_at": "2026-10-23T06:22:11.115Z"
+    },
+    {
+      "id": "S6",
+      "outcome": "Governance + decay: That's wrong / Forget / Forget everything / Download data / consent withdraw, decay job endpoint",
+      "state": "queued",
+      "risk": "low",
+      "owner": null,
+      "scope": [],
+      "dependencies": [],
+      "requirements": [
+        "FR-7",
+        "FR-9",
+        "AC-2",
+        "AC-6"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [],
+      "gates": [
+        {
+          "id": "demo",
+          "kind": "command",
+          "command": "pytest tests/test_s6_governance_decay.py",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        }
+      ],
+      "next_action": "Run the task pre-flight.",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-10-23T06:22:11.745Z",
+      "updated_at": "2026-10-23T06:22:11.746Z"
+    },
+    {
+      "id": "S7",
+      "outcome": "Reliability + eval: fallbacks, discount cap, eval runner over evals/golden.jsonl, memory ON vs OFF comparison",
+      "state": "queued",
+      "risk": "low",
+      "owner": null,
+      "scope": [],
+      "dependencies": [],
+      "requirements": [
+        "AC-3",
+        "AC-5",
+        "AC-8",
+        "NFR-3"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [],
+      "gates": [
+        {
+          "id": "demo",
+          "kind": "command",
+          "command": "pytest tests/test_s7_reliability_eval.py",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        }
+      ],
+      "next_action": "Run the task pre-flight.",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-10-23T06:22:12.374Z",
+      "updated_at": "2026-10-23T06:22:12.375Z"
+    },
+    {
+      "id": "S8",
+      "outcome": "Ship: README (problem, GIF, architecture, results table, ADRs, next steps), optional deploy, video script",
+      "state": "queued",
+      "risk": "low",
+      "owner": null,
+      "scope": [],
+      "dependencies": [],
+      "requirements": [
+        "NFR-2"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [],
+      "gates": [
+        {
+          "id": "demo",
+          "kind": "command",
+          "command": "bash scripts/check_ship_ready.sh",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        }
+      ],
+      "next_action": "Run the task pre-flight.",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-10-23T06:22:12.982Z",
+      "updated_at": "2026-10-23T06:22:12.983Z"
+    }
+  ],
+  "learning_proposals": [],
+  "cleanup_proposals": [],
+  "controls": [],
+  "attempts": [
+    {
+      "id": "f161394a-0645-44c4-8bd3-92ce7f6901b2",
+      "task": "S1",
+      "kind": "gate",
+      "command": "pytest tests/test_s1_foundation.py",
+      "timeout": 120000,
+      "authorization": null,
+      "pid": 13120,
+      "child_pid": 5916,
+      "started_at": "2026-10-23T07:00:07.512Z",
+      "status": "failed",
+      "before_hash": "cf7803a6e2d7dc12149f449f5efeb707a2e769f8278b12b78dce98cc460b49fc",
+      "config_hash": "b6b5d0fba36d4bc65b86c2e34d21a0fb6cbf92ccac3e6fe2a6c7f3919cc2aeb0",
+      "environment": {
+        "node": "v22.22.3",
+        "platform": "win32",
+        "arch": "x64",
+        "verifier": "cbdddbf25e5ed5f3406b93881ae54f64d11a8c54f0bfe177d19d9d9946a6a971",
+        "variables": {}
+      },
+      "cost": null,
+      "stop_reason": "command-failed",
+      "ended_at": "2026-10-23T07:00:10.611Z"
+    },
+    {
+      "id": "9a335fc5-15b3-4c57-93ab-0832a284cf94",
+      "task": "S1",
+      "kind": "gate",
+      "command": "pytest tests/test_s1_foundation.py",
+      "timeout": 120000,
+      "authorization": null,
+      "pid": 12108,
+      "child_pid": 5600,
+      "started_at": "2026-10-24T10:46:05.432Z",
+      "status": "passed",
+      "before_hash": "86cba04594fec63188736d74df8264b6d2789186b9a122a5e6db38e484b363a3",
+      "config_hash": "b6b5d0fba36d4bc65b86c2e34d21a0fb6cbf92ccac3e6fe2a6c7f3919cc2aeb0",
+      "environment": {
+        "node": "v22.22.3",
+        "platform": "win32",
+        "arch": "x64",
+        "verifier": "cbdddbf25e5ed5f3406b93881ae54f64d11a8c54f0bfe177d19d9d9946a6a971",
+        "variables": {}
+      },
+      "cost": null,
+      "stop_reason": null,
+      "ended_at": "2026-10-24T10:46:08.699Z"
+    },
+    {
+      "id": "6da55ad0-a178-4fee-862b-1ba20ed57358",
+      "task": "S1",
+      "kind": "gate",
+      "command": "pytest tests/test_s1_foundation.py",
+      "timeout": 120000,
+      "authorization": null,
+      "pid": 11572,
+      "child_pid": 17188,
+      "started_at": "2026-10-24T10:46:21.540Z",
+      "status": "passed",
+      "before_hash": "86cba04594fec63188736d74df8264b6d2789186b9a122a5e6db38e484b363a3",
+      "config_hash": "b6b5d0fba36d4bc65b86c2e34d21a0fb6cbf92ccac3e6fe2a6c7f3919cc2aeb0",
+      "environment": {
+        "node": "v22.22.3",
+        "platform": "win32",
+        "arch": "x64",
+        "verifier": "cbdddbf25e5ed5f3406b93881ae54f64d11a8c54f0bfe177d19d9d9946a6a971",
+        "variables": {}
+      },
+      "cost": null,
+      "stop_reason": null,
+      "ended_at": "2026-10-24T10:46:25.059Z"
+    },
+    {
+      "id": "8296113c-6f7d-4289-b703-b3d4ee0e2c34",
+      "task": "S2",
+      "kind": "gate",
+      "command": "pytest tests/test_s2_chat_tools.py",
+      "timeout": 120000,
+      "authorization": null,
+      "pid": 17460,
+      "child_pid": 3568,
+      "started_at": "2026-10-24T11:26:05.760Z",
+      "status": "passed",
+      "before_hash": "7ba5bbca70373395808c62271863e0c4d1bc623f6538a5002bdb02eb3681b220",
+      "config_hash": "2447c7e6aff67094b848e4f50b22806519e629dc6524e19644ab2dd188051383",
+      "environment": {
+        "node": "v22.22.3",
+        "platform": "win32",
+        "arch": "x64",
+        "verifier": "cbdddbf25e5ed5f3406b93881ae54f64d11a8c54f0bfe177d19d9d9946a6a971",
+        "variables": {}
+      },
+      "cost": null,
+      "stop_reason": null,
+      "ended_at": "2026-10-24T11:26:17.052Z"
+    }
+  ],
+  "authorizations": [],
+  "experiments": [],
+  "incidents": [],
+  "discovery": null,
+  "checkpoint": {
+    "at": "2026-10-24T11:26:38.890Z",
+    "revision": {
+      "commit": "d91818a83b98bf4683c30bab4d6cb87ab1d6441b",
+      "dirty": true,
+      "source_hash": "7ba5bbca70373395808c62271863e0c4d1bc623f6538a5002bdb02eb3681b220"
+    },
+    "active_task": "S3",
+    "next_action": "Run the task pre-flight."
+  },
+  "legacy": null
+}

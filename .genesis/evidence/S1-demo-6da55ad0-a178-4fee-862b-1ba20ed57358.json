@@ -1,0 +1,30 @@
+{
+  "task": "S1",
+  "gate": "demo",
+  "kind": "command",
+  "attempt": "6da55ad0-a178-4fee-862b-1ba20ed57358",
+  "command": "pytest tests/test_s1_foundation.py",
+  "started_at": "2026-10-24T10:46:21.540Z",
+  "observed_at": "2026-10-24T10:46:25.059Z",
+  "exit_code": 0,
+  "signal": null,
+  "stdout": "============================= test session starts =============================\r\nplatform win32 -- Python 3.13.2, pytest-9.1.1, pluggy-1.6.0\r\nrootdir: C:\\Users\\hp\\Downloads\\northbean-handoff\\northbean-handoff\r\nplugins: anyio-4.10.0, cov-7.1.0\r\ncollected 2 items\r\n\r\ntests\\test_s1_foundation.py ..                                           [100%]\r\n\r\n============================== 2 passed in 0.69s ==============================\r\n",
+  "stderr": "",
+  "failure": null,
+  "receipt": null,
+  "revision": {
+    "commit": "d91818a83b98bf4683c30bab4d6cb87ab1d6441b",
+    "dirty": true
+  },
+  "source_hash": "86cba04594fec63188736d74df8264b6d2789186b9a122a5e6db38e484b363a3",
+  "before_hash": "86cba04594fec63188736d74df8264b6d2789186b9a122a5e6db38e484b363a3",
+  "config_hash": "b6b5d0fba36d4bc65b86c2e34d21a0fb6cbf92ccac3e6fe2a6c7f3919cc2aeb0",
+  "environment": {
+    "node": "v22.22.3",
+    "platform": "win32",
+    "arch": "x64",
+    "verifier": "cbdddbf25e5ed5f3406b93881ae54f64d11a8c54f0bfe177d19d9d9946a6a971",
+    "variables": {}
+  },
+  "hash": "cfac62045706b89925bbc684c2445602a801dbe28e6ab40cc6e535163cf1f715"
+}

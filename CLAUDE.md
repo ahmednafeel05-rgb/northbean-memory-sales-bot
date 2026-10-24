@@ -12,14 +12,23 @@ with an evaluation.
 The memory layer is the real product. The sales chat is the stage it performs on.
 
 ## How we build
-- The build is driven by the **Genesis kit** (`.genesis/`: DONE.html, PLAN.md,
-  implementation-notes.html, checkpoints/CURRENT.md, LOOPS.md, KICKOFF.md,
-  context-graph.json) on top of the agentic-swe-master skills.
-- If `.genesis/` does not exist yet: run the Genesis setup (G0–G6) using
-  `docs/DESIGN_BRIEF.md` as the input. Every G0 answer is already in the brief —
-  do not re-interview Naf on things the brief answers.
-- Sprints and their demo commands are in the brief, section 13. Use them for PLAN.md.
-- Invariants in brief section 10 go into DONE.html and context-graph.json. Never break them.
+- The build is driven by the **Genesis kit** (`genesis-kit/`, CLI v2.4.0), which scaffolds
+  `.genesis/` as: `project.json` (requirements, decisions, invariants, task state — the
+  source of truth), `PLAN.md` (generated from `project.json`, do not edit directly),
+  `KICKOFF.md` (resume pointer for cold sessions), `dashboard.html` (read-only control
+  panel), and `index/` (code index for `genesis query`). The product specification lives
+  in `SPEC.md` at the repo root. There is no `DONE.html`, `implementation-notes.html`,
+  `LOOPS.md`, or `context-graph.json` in this version — those were an earlier Genesis
+  format; ignore any instruction that assumes they exist.
+- If `.genesis/` does not exist yet: run `genesis init . --workflow new-product
+  --objective "..."`, then fill `SPEC.md` using `docs/DESIGN_BRIEF.md` as the input and
+  run `genesis spec check` / `genesis spec approve`. Every spec answer is already in the
+  brief — do not re-interview Naf on things the brief answers.
+- Sprints and their demo commands are in the brief, section 13. Turn each sprint into a
+  Genesis task (`genesis task add` with `--requirement` ids and an executable `--gate`),
+  then `genesis plan check` / `genesis plan approve` to produce `PLAN.md`.
+- Invariants in brief section 10 go into `.genesis/project.json` via `genesis record
+  invariant`. Never break them.
 
 ## Working with Naf
 - Naf is new to AI engineering and knows only basic Python/Django. Explain what you
