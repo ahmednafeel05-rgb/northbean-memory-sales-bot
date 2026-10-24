@@ -1,6 +1,8 @@
 # CLAUDE.md — Northbean Memory Sales Bot
 
-Read this first in every session. Then read `docs/DESIGN_BRIEF.md`.
+Read this first in every session. Then read `docs/DESIGN_BRIEF.md`, then `SESSION_LOG.md`
+for narrative context `.genesis/KICKOFF.md` doesn't carry (debugging history, deferred
+human decisions, environment-specific fixes).
 
 ## What this project is
 A **portfolio project** (not a production system) by Naf: an AI sales assistant for a
@@ -38,6 +40,21 @@ The memory layer is the real product. The sales chat is the stage it performs on
   defaults). Otherwise proceed.
 - Scope is a portfolio project: prefer the simplest thing that demonstrates the
   concept. Items marked "deferred" in the brief stay out unless Naf asks.
+
+## Session log (SESSION_LOG.md)
+- `SESSION_LOG.md` is a running, human-readable history that complements `.genesis/KICKOFF.md`.
+  KICKOFF.md is Genesis's structured state (active task, gates, blocker); SESSION_LOG.md is
+  the narrative Genesis doesn't record — bugs found and fixed, deferred decisions, anything
+  Naf needs to remember that isn't a `project.json` record.
+- **Every session, before ending or handing off, append a new dated entry** (new entries on
+  top, most recent first) covering: what was done, bugs found/fixed and why, decisions made
+  or still open, and the next action. Do this without being asked — the same way Genesis
+  regenerates KICKOFF.md on checkpoint, but by hand since this file isn't Genesis-native.
+- Do not rewrite history in this file — append, don't edit old entries, unless correcting a
+  factual error in a past entry (mark it as a correction, don't silently change it).
+- This file is not Genesis's source of truth — `.genesis/project.json` still is. If the two
+  disagree, trust `.genesis/` for task/requirement state and this file for *why* things
+  happened.
 
 ## Ready-made inputs (do not regenerate)
 - `data/products.json` — 18-coffee fake catalog (with deliberate traps)
