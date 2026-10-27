@@ -41,7 +41,7 @@ CREATE TABLE memories (
   type text NOT NULL CHECK (type IN ('semantic','procedural','episodic')),
   category text NOT NULL,
   sensitivity text NOT NULL CHECK (sensitivity IN ('C1','C2')),
-  content text NOT NULL,
+  content text,  -- NOT NULL except when status='deleted' (I2: nulled immediately on forget)
   embedding vector(768),
   content_tsv tsvector,
   importance smallint NOT NULL CHECK (importance BETWEEN 1 AND 10),
@@ -52,7 +52,8 @@ CREATE TABLE memories (
   source jsonb NOT NULL,
   last_used_at timestamptz,
   created_at timestamptz NOT NULL DEFAULT now(),
-  updated_at timestamptz NOT NULL DEFAULT now()
+  updated_at timestamptz NOT NULL DEFAULT now(),
+  CHECK (status = 'deleted' OR content IS NOT NULL)  -- I2: only a deleted memory may be null
 );
 
 CREATE INDEX memories_embedding_hnsw ON memories USING hnsw (embedding vector_cosine_ops);
@@ -97,6 +98,16 @@ CREATE TABLE feedback (
   customer_id uuid NOT NULL REFERENCES customers(id) ON DELETE CASCADE,
   kind text NOT NULL CHECK (kind IN ('wrong','forget','useful')),
   created_at timestamptz NOT NULL DEFAULT now()
+);
+
+-- One row per customer, ever (design brief §8: apply_discount, "fixed 10% first-order code,
+-- max once per customer, enforced in code"). The PK itself is the cap -- a second INSERT for
+-- the same customer is structurally impossible, not just application discipline.
+CREATE TABLE discounts (
+  customer_id uuid PRIMARY KEY REFERENCES customers(id) ON DELETE CASCADE,
+  code text NOT NULL,
+  percent_off smallint NOT NULL CHECK (percent_off > 0 AND percent_off <= 10),
+  granted_at timestamptz NOT NULL DEFAULT now()
 );
 
 CREATE TABLE products (

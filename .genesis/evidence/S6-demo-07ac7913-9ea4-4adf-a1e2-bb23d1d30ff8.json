@@ -1,0 +1,30 @@
+{
+  "task": "S6",
+  "gate": "demo",
+  "kind": "command",
+  "attempt": "07ac7913-9ea4-4adf-a1e2-bb23d1d30ff8",
+  "command": "pytest tests/test_s6_governance_decay.py",
+  "started_at": "2026-10-27T16:38:56.286Z",
+  "observed_at": "2026-10-27T16:39:11.859Z",
+  "exit_code": 0,
+  "signal": null,
+  "stdout": "============================= test session starts =============================\r\nplatform win32 -- Python 3.13.2, pytest-9.1.1, pluggy-1.6.0\r\nrootdir: C:\\Users\\hp\\Downloads\\northbean-handoff\\northbean-handoff\r\nplugins: anyio-4.10.0, cov-7.1.0\r\ncollected 6 items\r\n\r\ntests\\test_s6_governance_decay.py ......                                 [100%]\r\n\r\n============================= 6 passed in 10.63s ==============================\r\n",
+  "stderr": "",
+  "failure": null,
+  "receipt": null,
+  "revision": {
+    "commit": "3db8e7ebd361f8b24cf82dcb762c27dcc97b7e00",
+    "dirty": true
+  },
+  "source_hash": "0300bce6ebf343885a19748230ed15bbfbea6c9464671a9a16f1daab29f144c6",
+  "before_hash": "0300bce6ebf343885a19748230ed15bbfbea6c9464671a9a16f1daab29f144c6",
+  "config_hash": "ff1505bc67269f201dd10c8c1d2c8aa36380945fcc359fa14e7e6ba0f99b4898",
+  "environment": {
+    "node": "v22.22.3",
+    "platform": "win32",
+    "arch": "x64",
+    "verifier": "cbdddbf25e5ed5f3406b93881ae54f64d11a8c54f0bfe177d19d9d9946a6a971",
+    "variables": {}
+  },
+  "hash": "941ac0fa3cbde1ce7676af26c96d129c11e940b98c53af810c4e3c6508cd1dd4"
+}

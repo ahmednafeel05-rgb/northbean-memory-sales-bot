@@ -1,0 +1,235 @@
+:root {
+  --coffee: #4b2e21;
+  --coffee-light: #8a5a3c;
+  --cream: #faf5ef;
+  --ink: #2a2117;
+  --border: #e3d8cb;
+  --accent: #b5651d;
+  font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+}
+
+header.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background: var(--coffee);
+  color: white;
+}
+
+header.topbar h1 {
+  font-size: 18px;
+  margin: 0;
+}
+
+header.topbar nav a {
+  color: white;
+  text-decoration: underline;
+  font-size: 14px;
+}
+
+.layout {
+  display: flex;
+  gap: 16px;
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.panel {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.user-switcher {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.user-switcher button {
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--coffee-light);
+  background: white;
+  cursor: pointer;
+}
+
+.user-switcher button[aria-pressed="true"] {
+  background: var(--coffee);
+  color: white;
+}
+
+.chat-column {
+  flex: 1;
+  min-width: 0;
+}
+
+.chat-log {
+  height: 360px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.bubble {
+  max-width: 80%;
+  padding: 8px 12px;
+  border-radius: 10px;
+  line-height: 1.35;
+  font-size: 14px;
+  white-space: pre-wrap;
+}
+
+.bubble.user {
+  align-self: flex-end;
+  background: var(--accent);
+  color: white;
+}
+
+.bubble.assistant {
+  align-self: flex-start;
+  background: #f1e8dc;
+}
+
+.chat-form {
+  display: flex;
+  gap: 8px;
+}
+
+.chat-form input {
+  flex: 1;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.toolbar button {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 4px 10px;
+  cursor: pointer;
+}
+
+.memory-drawer {
+  width: 320px;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.memory-card {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px 10px;
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+
+.memory-card .meta {
+  color: var(--coffee-light);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.memory-card .source {
+  color: #665;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.memory-card .actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.memory-card .actions button {
+  font-size: 11px;
+  padding: 2px 8px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: white;
+  cursor: pointer;
+}
+
+.inline-note {
+  font-size: 12px;
+  color: var(--accent);
+  margin-top: 4px;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  background: white;
+  border-radius: 8px;
+  padding: 24px;
+  max-width: 360px;
+}
+
+.modal .actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+  justify-content: flex-end;
+}
+
+.modal button.primary {
+  background: var(--coffee);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.modal button.secondary {
+  background: white;
+  border: 1px solid var(--border);
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+table.metrics {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+table.metrics th,
+table.metrics td {
+  text-align: left;
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--border);
+}

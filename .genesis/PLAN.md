@@ -26,7 +26,7 @@
 
 ### S3 — Write path: PII filter -> extractor -> evaluator -> dedupe/conflict -> store + audit, async queue
 
-- state/risk: active / low
+- state/risk: done / low
 - requirements: FR-1, FR-2, FR-3, FR-8, FR-10, AC-7
 - scope: not bounded
 - gates: demo: pytest tests/test_s3_write_path.py
@@ -34,7 +34,7 @@
 
 ### S4 — Read path: always-loaded + hybrid search + scoring + composer + reinforce + retrieval_log
 
-- state/risk: queued / low
+- state/risk: done / low
 - requirements: FR-4, NFR-1, NFR-5
 - scope: not bounded
 - gates: demo: pytest tests/test_s4_read_path.py
@@ -42,7 +42,7 @@
 
 ### S5 — Frontend: Next.js chat, user switcher, consent prompt, memory panel (sources/scores), ops dashboard
 
-- state/risk: queued / low
+- state/risk: done / low
 - requirements: FR-6, FR-7
 - scope: not bounded
 - gates: demo: npm --prefix web run test:e2e
@@ -50,7 +50,7 @@
 
 ### S6 — Governance + decay: That's wrong / Forget / Forget everything / Download data / consent withdraw, decay job endpoint
 
-- state/risk: queued / low
+- state/risk: done / low
 - requirements: FR-7, FR-9, AC-2, AC-6
 - scope: not bounded
 - gates: demo: pytest tests/test_s6_governance_decay.py
@@ -58,7 +58,7 @@
 
 ### S7 — Reliability + eval: fallbacks, discount cap, eval runner over evals/golden.jsonl, memory ON vs OFF comparison
 
-- state/risk: queued / low
+- state/risk: paused / low
 - requirements: AC-3, AC-5, AC-8, NFR-3
 - scope: not bounded
 - gates: demo: pytest tests/test_s7_reliability_eval.py

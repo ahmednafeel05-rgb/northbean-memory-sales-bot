@@ -1,0 +1,30 @@
+{
+  "task": "S5",
+  "gate": "demo",
+  "kind": "command",
+  "attempt": "ad858156-b243-4efb-b5c7-a3cab44a7637",
+  "command": "npm --prefix web run test:e2e",
+  "started_at": "2026-10-27T12:50:51.619Z",
+  "observed_at": "2026-10-27T12:51:14.576Z",
+  "exit_code": 0,
+  "signal": null,
+  "stdout": "\n> northbean-web@0.1.0 test:e2e\n> playwright test\n\n\nRunning 3 tests using 1 worker\n\n  ✓  1 tests\\e2e\\demo.spec.js:8:1 › shopper can switch user, consent, chat, and see the memory panel (8.1s)\n  ✓  2 tests\\e2e\\demo.spec.js:32:1 › declining consent skips the memory panel (2.3s)\n  ✓  3 tests\\e2e\\demo.spec.js:38:1 › ops dashboard shows aggregate counts, no memory content (4.2s)\n\n  3 passed (17.9s)\n",
+  "stderr": "",
+  "failure": null,
+  "receipt": null,
+  "revision": {
+    "commit": "3db8e7ebd361f8b24cf82dcb762c27dcc97b7e00",
+    "dirty": true
+  },
+  "source_hash": "feca33cb1be077ab9cd3c053eaf80acdd85e89eccb6008ccfd271b06909d3026",
+  "before_hash": "feca33cb1be077ab9cd3c053eaf80acdd85e89eccb6008ccfd271b06909d3026",
+  "config_hash": "d41092f7f664b6a5d9a413e3b86b9cfdb0a81dc28e50636f5ecd1632ed6677e8",
+  "environment": {
+    "node": "v22.22.3",
+    "platform": "win32",
+    "arch": "x64",
+    "verifier": "cbdddbf25e5ed5f3406b93881ae54f64d11a8c54f0bfe177d19d9d9946a6a971",
+    "variables": {}
+  },
+  "hash": "a738ba53aef920acf61de8106bb153246c512fcbc3dc159c6c8fd99e9f3e205d"
+}

@@ -1,0 +1,30 @@
+{
+  "task": "S3",
+  "gate": "demo",
+  "kind": "command",
+  "attempt": "30da62d2-ebb4-43cb-ac10-d2ccab916bc1",
+  "command": "pytest tests/test_s3_write_path.py",
+  "started_at": "2026-10-25T13:55:20.605Z",
+  "observed_at": "2026-10-25T13:55:50.532Z",
+  "exit_code": 0,
+  "signal": null,
+  "stdout": "============================= test session starts =============================\r\nplatform win32 -- Python 3.13.2, pytest-9.1.1, pluggy-1.6.0\r\nrootdir: C:\\Users\\hp\\Downloads\\northbean-handoff\\northbean-handoff\r\nplugins: anyio-4.10.0, cov-7.1.0\r\ncollected 2 items\r\n\r\ntests\\test_s3_write_path.py ..                                           [100%]\r\n\r\n============================= 2 passed in 25.59s ==============================\r\n",
+  "stderr": "",
+  "failure": null,
+  "receipt": null,
+  "revision": {
+    "commit": "3db8e7ebd361f8b24cf82dcb762c27dcc97b7e00",
+    "dirty": true
+  },
+  "source_hash": "9e74d5397819fb15e75a86484a24cf9395fc7bc11d60b8a217625621db025a1b",
+  "before_hash": "9e74d5397819fb15e75a86484a24cf9395fc7bc11d60b8a217625621db025a1b",
+  "config_hash": "1e80823ab0df69536ce7c254d02d33c5d3aa6e8c61d9ce16d2bdac61aeb18650",
+  "environment": {
+    "node": "v22.22.3",
+    "platform": "win32",
+    "arch": "x64",
+    "verifier": "cbdddbf25e5ed5f3406b93881ae54f64d11a8c54f0bfe177d19d9d9946a6a971",
+    "variables": {}
+  },
+  "hash": "e5d18bc2b4b88bc37e778ca13c8cb41e82b2d5fbeb819479a3a34fc658f224b4"
+}

@@ -1,8 +1,8 @@
 {
   "schemaVersion": 2,
   "project": "northbean-handoff",
-  "revision": "d91818a83b98bf4683c30bab4d6cb87ab1d6441b",
-  "sourceHash": "75fc48abd0bc6fdeacbe3b93e9167edda2887c492d55962fc55d855164158c3b",
+  "revision": "3db8e7ebd361f8b24cf82dcb762c27dcc97b7e00",
+  "sourceHash": "719e726deb82c0d47378463005836a36fc7a34c881d1d3d758226c183e1d7eb8",
   "provenance": {
     "tool": "genesis-graphizer",
     "method": "static-analysis",
@@ -27,7 +27,37 @@
       "language": "python",
       "confidence": 1,
       "extractor": "filesystem",
-      "contentHash": "ff2b503f20289fea962254d37db65dec02690dc6f22ab27db755606a90fdccee"
+      "contentHash": "f496e059ed7e4a780eafbc42cbf3985af7e059a3b234763ce7ca94b4544ae39b"
+    },
+    {
+      "id": "file:api/app/embeddings.py",
+      "type": "file",
+      "label": "api/app/embeddings.py",
+      "path": "api/app/embeddings.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "8a39fa0fedc13bf88e50fdda9ac2ff52ca79c193a13247ae75fe162c940b2477"
+    },
+    {
+      "id": "file:api/app/evaluator.py",
+      "type": "file",
+      "label": "api/app/evaluator.py",
+      "path": "api/app/evaluator.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "b1d4a99eddd0d04f2ccaa96d3e379b2cfb1e13f63274a69ccc9486a03e70ff11"
+    },
+    {
+      "id": "file:api/app/extractor.py",
+      "type": "file",
+      "label": "api/app/extractor.py",
+      "path": "api/app/extractor.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "ebd53058a5e6837e9057ffb359a5c3cfeaf779adc6992226ee6d66eacb6417a4"
     },
     {
       "id": "file:api/app/llm.py",
@@ -37,7 +67,7 @@
       "language": "python",
       "confidence": 1,
       "extractor": "filesystem",
-      "contentHash": "d43ac75aa6c8866759ea2a6a01fe4b095f80a8d59688938a82d95364a0e0e624"
+      "contentHash": "73f70ccbfcfede2926bcb1d149e42a7526c332af6491dd09482d2e618f0bd641"
     },
     {
       "id": "file:api/app/main.py",
@@ -47,7 +77,37 @@
       "language": "python",
       "confidence": 1,
       "extractor": "filesystem",
-      "contentHash": "8496b816d7d892ae23b871e81de08ee917f63a196bfde9583e0084dc7d8c3133"
+      "contentHash": "c2b96b2f26105fb28495957f7284beb7fa5a6e45119f70485b0c8f3a504c90d0"
+    },
+    {
+      "id": "file:api/app/memory_repo.py",
+      "type": "file",
+      "label": "api/app/memory_repo.py",
+      "path": "api/app/memory_repo.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "b3df37e610dee3e27aba244286cc0d5a340368ca8e740af17315dac52b6c0dbb"
+    },
+    {
+      "id": "file:api/app/pii_filter.py",
+      "type": "file",
+      "label": "api/app/pii_filter.py",
+      "path": "api/app/pii_filter.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "4624360084f74d7773b347ef0a672da2204040010757a6071d139d1041e2c7b3"
+    },
+    {
+      "id": "file:api/app/read_path.py",
+      "type": "file",
+      "label": "api/app/read_path.py",
+      "path": "api/app/read_path.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "5f7b2390dca37844c1a7713c1d157c6d266ef424fa4bb1b0007ade758212f73b"
     },
     {
       "id": "file:api/app/reply_checker.py",
@@ -57,7 +117,7 @@
       "language": "python",
       "confidence": 1,
       "extractor": "filesystem",
-      "contentHash": "2bc00c6e548d4571ecd6de92cb3503695a83ecb42900979cde677b917fde3a91"
+      "contentHash": "4e9e45ba1b785a1404f720093a5244fb09f0d83b8fd545eb3c86de21e9b1d4e0"
     },
     {
       "id": "file:api/app/tools.py",
@@ -67,7 +127,17 @@
       "language": "python",
       "confidence": 1,
       "extractor": "filesystem",
-      "contentHash": "77a1981d09a0093067eab3f568cf91cdb85c8ef21c1ed93db6547696db3c3f49"
+      "contentHash": "484f44133e389149318d4cab901e104ff36893eee57cbc6d57da3414c0fd9379"
+    },
+    {
+      "id": "file:api/app/write_path.py",
+      "type": "file",
+      "label": "api/app/write_path.py",
+      "path": "api/app/write_path.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "d522ebdcbb57177c10584fd50003e3216671b2226502fbc42a5a3ef7d0bba156"
     },
     {
       "id": "file:db/seed.py",
@@ -78,6 +148,26 @@
       "confidence": 1,
       "extractor": "filesystem",
       "contentHash": "281f53204d2f0f432b00e1449d0f766965ef35f8f50057bbb4ff25e04b68906d"
+    },
+    {
+      "id": "file:evals/__init__.py",
+      "type": "file",
+      "label": "evals/__init__.py",
+      "path": "evals/__init__.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": "file:evals/run_eval.py",
+      "type": "file",
+      "label": "evals/run_eval.py",
+      "path": "evals/run_eval.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "9f34a5c469d323c90e0442402c4fb0e9ca0948d551fcf7042d8c42cfae5417f0"
     },
     {
       "id": "file:genesis-kit/tests/autonomy.test.mjs",
@@ -10240,6 +10330,174 @@
       "contentHash": "f3f196201576bf8c847138548ef5fed418851b87fc7e667c668115c4eb65f55e"
     },
     {
+      "id": "file:tests/test_s3_write_path.py",
+      "type": "file",
+      "label": "tests/test_s3_write_path.py",
+      "path": "tests/test_s3_write_path.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "6e25baad29ca6a26e6bcaaaf866a1499dc41c457448abafdb1a8695c780c5519"
+    },
+    {
+      "id": "file:tests/test_s4_read_path.py",
+      "type": "file",
+      "label": "tests/test_s4_read_path.py",
+      "path": "tests/test_s4_read_path.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "d50baee7109f1f070a77d90580b41f793154c9dc0ba53346aba3c0eb74905b38"
+    },
+    {
+      "id": "file:tests/test_s6_governance_decay.py",
+      "type": "file",
+      "label": "tests/test_s6_governance_decay.py",
+      "path": "tests/test_s6_governance_decay.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "a7eb774a9660f19ac1ab5283b1dc4ef22f2e15dfd6afadc2b23447a42ac59d60"
+    },
+    {
+      "id": "file:tests/test_s7_reliability_eval.py",
+      "type": "file",
+      "label": "tests/test_s7_reliability_eval.py",
+      "path": "tests/test_s7_reliability_eval.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "77839cbd3fbf6b62d6336ea70048f730a9c26243195b9943ed1fbf65e48f48f1"
+    },
+    {
+      "id": "file:web/app/components/ChatWindow.js",
+      "type": "file",
+      "label": "web/app/components/ChatWindow.js",
+      "path": "web/app/components/ChatWindow.js",
+      "language": "javascript",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "b2a98a04b2f214607b4221e786c86b16091c136cfc36e7b864164185ebc2dfc7"
+    },
+    {
+      "id": "file:web/app/components/ConsentModal.js",
+      "type": "file",
+      "label": "web/app/components/ConsentModal.js",
+      "path": "web/app/components/ConsentModal.js",
+      "language": "javascript",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "e0f810cd83b98d854e84c5ee21850a95f06a26407428e592962c192b4164d13f"
+    },
+    {
+      "id": "file:web/app/components/MemoryPanel.js",
+      "type": "file",
+      "label": "web/app/components/MemoryPanel.js",
+      "path": "web/app/components/MemoryPanel.js",
+      "language": "javascript",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "f28491af93d13c3b5eb66ef8667516d7cf8874b885bddd0414dee18af696e6ad"
+    },
+    {
+      "id": "file:web/app/components/UserSwitcher.js",
+      "type": "file",
+      "label": "web/app/components/UserSwitcher.js",
+      "path": "web/app/components/UserSwitcher.js",
+      "language": "javascript",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "b443616cf0bf26e53b7fe85c55bfe626d6fbba698887abf4850842ac5996f9f9"
+    },
+    {
+      "id": "file:web/app/layout.js",
+      "type": "file",
+      "label": "web/app/layout.js",
+      "path": "web/app/layout.js",
+      "language": "javascript",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "97c8b56754abd2e662781beb20f83338d7580c6b2e688b862b70c0df47693517"
+    },
+    {
+      "id": "file:web/app/ops/page.js",
+      "type": "file",
+      "label": "web/app/ops/page.js",
+      "path": "web/app/ops/page.js",
+      "language": "javascript",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "b8906b4b7da08f0c057c2b3ef79897754bfea8d0dc33964bc86b290b0674b1e7"
+    },
+    {
+      "id": "file:web/app/page.js",
+      "type": "file",
+      "label": "web/app/page.js",
+      "path": "web/app/page.js",
+      "language": "javascript",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "b51346d0c9093cb6273044576a21885919a85fcba57bd0e28023af81aa36987f"
+    },
+    {
+      "id": "file:web/lib/api.js",
+      "type": "file",
+      "label": "web/lib/api.js",
+      "path": "web/lib/api.js",
+      "language": "javascript",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "5096163d9c55ea75d51329619b14b4f043ff255ece5c7983d54c330d056a472a"
+    },
+    {
+      "id": "file:web/next.config.js",
+      "type": "file",
+      "label": "web/next.config.js",
+      "path": "web/next.config.js",
+      "language": "javascript",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "549704cecfddd6f6c20e181566bbabb2e390f729be865edf881a4464ff50f50d"
+    },
+    {
+      "id": "file:web/playwright.config.js",
+      "type": "file",
+      "label": "web/playwright.config.js",
+      "path": "web/playwright.config.js",
+      "language": "javascript",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "3c55d1f9722d6373dc1f5453467e2ac704eb913f5cfeffe98a820f77709b0aaa"
+    },
+    {
+      "id": "file:web/tests/e2e/demo.spec.js",
+      "type": "file",
+      "label": "web/tests/e2e/demo.spec.js",
+      "path": "web/tests/e2e/demo.spec.js",
+      "language": "javascript",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "241336ac8f552ab36efdb107b45eb95450135934a9197d04ffbbba245366d02f"
+    },
+    {
+      "id": "package:npm:@playwright/test",
+      "type": "package",
+      "label": "@playwright/test",
+      "ecosystem": "npm",
+      "confidence": 0.85,
+      "extractor": "import",
+      "contentHash": "55127bf8fcb5e8cf3f6baa09dd89aa73e428bb13fd07f3456c686e81d0f0ac37"
+    },
+    {
+      "id": "package:npm:react",
+      "type": "package",
+      "label": "react",
+      "ecosystem": "npm",
+      "confidence": 0.85,
+      "extractor": "import",
+      "contentHash": "5235ef4d5d23a83db39d749bfea92bdc3cac601ea2cfae3a8f15e91d7ee494ff"
+    },
+    {
       "id": "package:npm:test",
       "type": "package",
       "label": "test",
@@ -14117,6 +14375,302 @@
       "confidence": 0.8,
       "extractor": "conservative-js-symbols",
       "contentHash": "5e9790e308186c0ed9e0db4ad1e7f8f92aa41a0713f5eff6d2079aadadd781d0"
+    },
+    {
+      "id": "symbol:web/app/components/ChatWindow.js#function:ChatWindow",
+      "type": "symbol",
+      "kind": "function",
+      "name": "ChatWindow",
+      "label": "ChatWindow",
+      "path": "web/app/components/ChatWindow.js",
+      "line": 12,
+      "confidence": 0.8,
+      "extractor": "conservative-js-symbols",
+      "contentHash": "1adae2cf213594ba39b3f460f29db167f11a9939862a509ce942144198594772"
+    },
+    {
+      "id": "symbol:web/app/components/ChatWindow.js#function:stripMarkdown",
+      "type": "symbol",
+      "kind": "function",
+      "name": "stripMarkdown",
+      "label": "stripMarkdown",
+      "path": "web/app/components/ChatWindow.js",
+      "line": 8,
+      "confidence": 0.8,
+      "extractor": "conservative-js-symbols",
+      "contentHash": "8fb2a29ae2775ef4793b0268aa803ea753dfb8566ae33a6eeb0c9007268a4445"
+    },
+    {
+      "id": "symbol:web/app/components/ConsentModal.js#function:ConsentModal",
+      "type": "symbol",
+      "kind": "function",
+      "name": "ConsentModal",
+      "label": "ConsentModal",
+      "path": "web/app/components/ConsentModal.js",
+      "line": 6,
+      "confidence": 0.8,
+      "extractor": "conservative-js-symbols",
+      "contentHash": "e7730b1c22dac38f9a3115353a1ed6ffe54ac4a1a15736d2070502ea665f265e"
+    },
+    {
+      "id": "symbol:web/app/components/MemoryPanel.js#function:MemoryPanel",
+      "type": "symbol",
+      "kind": "function",
+      "name": "MemoryPanel",
+      "label": "MemoryPanel",
+      "path": "web/app/components/MemoryPanel.js",
+      "line": 15,
+      "confidence": 0.8,
+      "extractor": "conservative-js-symbols",
+      "contentHash": "686c2ea7e97fa869604d86f5ac3f9b78bf43ec29d3f55a7979e8999a42d8538e"
+    },
+    {
+      "id": "symbol:web/app/components/UserSwitcher.js#function:UserSwitcher",
+      "type": "symbol",
+      "kind": "function",
+      "name": "UserSwitcher",
+      "label": "UserSwitcher",
+      "path": "web/app/components/UserSwitcher.js",
+      "line": 3,
+      "confidence": 0.8,
+      "extractor": "conservative-js-symbols",
+      "contentHash": "5efafedf4524e9f7ee784e34d13c0270324e10a807a96ff4cc3568396a1e02a9"
+    },
+    {
+      "id": "symbol:web/app/layout.js#function:RootLayout",
+      "type": "symbol",
+      "kind": "function",
+      "name": "RootLayout",
+      "label": "RootLayout",
+      "path": "web/app/layout.js",
+      "line": 8,
+      "confidence": 0.8,
+      "extractor": "conservative-js-symbols",
+      "contentHash": "b3f96339ba215ebd6ba503ea8fca4a7c61b3c35014e0d8f3c377caed0cbc1890"
+    },
+    {
+      "id": "symbol:web/app/layout.js#variable:metadata",
+      "type": "symbol",
+      "kind": "variable",
+      "name": "metadata",
+      "label": "metadata",
+      "path": "web/app/layout.js",
+      "line": 3,
+      "confidence": 0.8,
+      "extractor": "conservative-js-symbols",
+      "contentHash": "1c4009dcdeca39fd5c9228279837d6284c5aefaa467126841e57afc26ba65eec"
+    },
+    {
+      "id": "symbol:web/app/ops/page.js#function:OpsDashboard",
+      "type": "symbol",
+      "kind": "function",
+      "name": "OpsDashboard",
+      "label": "OpsDashboard",
+      "path": "web/app/ops/page.js",
+      "line": 7,
+      "confidence": 0.8,
+      "extractor": "conservative-js-symbols",
+      "contentHash": "6b4ec83d65e38b60bb4dac48347bada784e295080fafb88313727f7a7a6a1b3b"
+    },
+    {
+      "id": "symbol:web/app/page.js#function:consentKey",
+      "type": "symbol",
+      "kind": "function",
+      "name": "consentKey",
+      "label": "consentKey",
+      "path": "web/app/page.js",
+      "line": 10,
+      "confidence": 0.8,
+      "extractor": "conservative-js-symbols",
+      "contentHash": "df4eb2ffb4baa6913c97c929faf713b04b7ce6b252b0464fe280504896971e52"
+    },
+    {
+      "id": "symbol:web/app/page.js#function:Home",
+      "type": "symbol",
+      "kind": "function",
+      "name": "Home",
+      "label": "Home",
+      "path": "web/app/page.js",
+      "line": 14,
+      "confidence": 0.8,
+      "extractor": "conservative-js-symbols",
+      "contentHash": "e1a106fbcc131f9a29bfcc7ca368c0c2e8175b30674f7f2c893aff7089d9e886"
+    },
+    {
+      "id": "symbol:web/lib/api.js#function:correctMemory",
+      "type": "symbol",
+      "kind": "function",
+      "name": "correctMemory",
+      "label": "correctMemory",
+      "path": "web/lib/api.js",
+      "line": 50,
+      "confidence": 0.8,
+      "extractor": "conservative-js-symbols",
+      "contentHash": "6a4cb19a46a6dbe484504e6ef55853fc4ee87f54c0d01e7094fd58f2196e74c9"
+    },
+    {
+      "id": "symbol:web/lib/api.js#function:downloadDataUrl",
+      "type": "symbol",
+      "kind": "function",
+      "name": "downloadDataUrl",
+      "label": "downloadDataUrl",
+      "path": "web/lib/api.js",
+      "line": 65,
+      "confidence": 0.8,
+      "extractor": "conservative-js-symbols",
+      "contentHash": "8c75dfd421bcaa7b195bd81c020e0624f92fd32bf3c8187e88934d7ae546f289"
+    },
+    {
+      "id": "symbol:web/lib/api.js#function:endConversation",
+      "type": "symbol",
+      "kind": "function",
+      "name": "endConversation",
+      "label": "endConversation",
+      "path": "web/lib/api.js",
+      "line": 41,
+      "confidence": 0.8,
+      "extractor": "conservative-js-symbols",
+      "contentHash": "e1305d08503f2b1001b8f2b5e7e284bb92df3595b60b55c0f81a6e4f675ce9a5"
+    },
+    {
+      "id": "symbol:web/lib/api.js#function:forgetEverything",
+      "type": "symbol",
+      "kind": "function",
+      "name": "forgetEverything",
+      "label": "forgetEverything",
+      "path": "web/lib/api.js",
+      "line": 61,
+      "confidence": 0.8,
+      "extractor": "conservative-js-symbols",
+      "contentHash": "340acf56aec0af3547ef2e1af973d280145b799816f9c7c4c06b66308aa67805"
+    },
+    {
+      "id": "symbol:web/lib/api.js#function:forgetMemory",
+      "type": "symbol",
+      "kind": "function",
+      "name": "forgetMemory",
+      "label": "forgetMemory",
+      "path": "web/lib/api.js",
+      "line": 57,
+      "confidence": 0.8,
+      "extractor": "conservative-js-symbols",
+      "contentHash": "41bdc76d4c73c4851a4ae5c425e0d1c18652542bbc926df7f09866e9bb3116c3"
+    },
+    {
+      "id": "symbol:web/lib/api.js#function:getMemories",
+      "type": "symbol",
+      "kind": "function",
+      "name": "getMemories",
+      "label": "getMemories",
+      "path": "web/lib/api.js",
+      "line": 29,
+      "confidence": 0.8,
+      "extractor": "conservative-js-symbols",
+      "contentHash": "9d9e7b3353bdc13438c3862b49c64d7ddf3822efc3f75435abd5eed03e4f4a78"
+    },
+    {
+      "id": "symbol:web/lib/api.js#function:getOpsMetrics",
+      "type": "symbol",
+      "kind": "function",
+      "name": "getOpsMetrics",
+      "label": "getOpsMetrics",
+      "path": "web/lib/api.js",
+      "line": 37,
+      "confidence": 0.8,
+      "extractor": "conservative-js-symbols",
+      "contentHash": "11d9c745cf83075e9261e48bed7289070349532f18983ea77dd49511c59db869"
+    },
+    {
+      "id": "symbol:web/lib/api.js#function:getRetrieval",
+      "type": "symbol",
+      "kind": "function",
+      "name": "getRetrieval",
+      "label": "getRetrieval",
+      "path": "web/lib/api.js",
+      "line": 33,
+      "confidence": 0.8,
+      "extractor": "conservative-js-symbols",
+      "contentHash": "82e35637382075e5d702bc9766db7d7c0478a9e2ba9ca739c8b5d7c8036bac83"
+    },
+    {
+      "id": "symbol:web/lib/api.js#function:listCustomers",
+      "type": "symbol",
+      "kind": "function",
+      "name": "listCustomers",
+      "label": "listCustomers",
+      "path": "web/lib/api.js",
+      "line": 18,
+      "confidence": 0.8,
+      "extractor": "conservative-js-symbols",
+      "contentHash": "ff03ac39e1ca2bdf5b402b2a860237161fa7159d9309d0cae9541891ee196595"
+    },
+    {
+      "id": "symbol:web/lib/api.js#function:request",
+      "type": "symbol",
+      "kind": "function",
+      "name": "request",
+      "label": "request",
+      "path": "web/lib/api.js",
+      "line": 5,
+      "confidence": 0.8,
+      "extractor": "conservative-js-symbols",
+      "contentHash": "d78b9d7d32630ad9df185413d5036615c93d3d498efc915e20ade6932fd8965f"
+    },
+    {
+      "id": "symbol:web/lib/api.js#function:sendChat",
+      "type": "symbol",
+      "kind": "function",
+      "name": "sendChat",
+      "label": "sendChat",
+      "path": "web/lib/api.js",
+      "line": 22,
+      "confidence": 0.8,
+      "extractor": "conservative-js-symbols",
+      "contentHash": "13e29a938acf44ea51dde5fcee1f89be09d9b50cbb8ebde0ccf0b9c2b1f5f72c"
+    },
+    {
+      "id": "symbol:web/lib/api.js#function:withdrawConsent",
+      "type": "symbol",
+      "kind": "function",
+      "name": "withdrawConsent",
+      "label": "withdrawConsent",
+      "path": "web/lib/api.js",
+      "line": 69,
+      "confidence": 0.8,
+      "extractor": "conservative-js-symbols",
+      "contentHash": "23ca5000d9cc3ce602feebaa26d9cb4b60d61dc24e883dae3ec05806ce0947a8"
+    },
+    {
+      "id": "symbol:web/lib/api.js#variable:API_BASE",
+      "type": "symbol",
+      "kind": "variable",
+      "name": "API_BASE",
+      "label": "API_BASE",
+      "path": "web/lib/api.js",
+      "line": 3,
+      "confidence": 0.8,
+      "extractor": "conservative-js-symbols",
+      "contentHash": "4d174a5d14e097c3d2573a03f6601dfc9b9814c1091f26b53dc6bb962a667d71"
+    },
+    {
+      "id": "symbol:web/next.config.js#variable:nextConfig",
+      "type": "symbol",
+      "kind": "variable",
+      "name": "nextConfig",
+      "label": "nextConfig",
+      "path": "web/next.config.js",
+      "line": 2,
+      "confidence": 0.8,
+      "extractor": "conservative-js-symbols",
+      "contentHash": "6c99eeb5f39de68747251e95ab4d5fb9b763f1f251d0329726c1daadf724684c"
+    },
+    {
+      "id": "unresolved:web/app/layout.js:./globals.css",
+      "type": "unresolved",
+      "label": "./globals.css",
+      "confidence": 0.4,
+      "extractor": "import",
+      "contentHash": "a8520f708a4b809c0c63a59c1809992cfebc488de2b73901b66f9846b25d305a"
     }
   ],
   "edges": [
@@ -18415,6 +18969,213 @@
       "extractor": "conservative-js-calls"
     },
     {
+      "type": "calls",
+      "source": "symbol:web/app/components/ChatWindow.js#function:ChatWindow",
+      "target": "symbol:web/app/components/ChatWindow.js#function:stripMarkdown",
+      "tier": "proven",
+      "resolved": true,
+      "confidence": 0.75,
+      "extractor": "conservative-js-calls"
+    },
+    {
+      "type": "calls",
+      "source": "symbol:web/app/components/ChatWindow.js#function:ChatWindow",
+      "target": "symbol:web/lib/api.js#function:endConversation",
+      "tier": "proven",
+      "resolved": true,
+      "confidence": 0.7,
+      "extractor": "conservative-js-calls"
+    },
+    {
+      "type": "calls",
+      "source": "symbol:web/app/components/ChatWindow.js#function:ChatWindow",
+      "target": "symbol:web/lib/api.js#function:sendChat",
+      "tier": "proven",
+      "resolved": true,
+      "confidence": 0.7,
+      "extractor": "conservative-js-calls"
+    },
+    {
+      "type": "calls",
+      "source": "symbol:web/app/components/MemoryPanel.js#function:MemoryPanel",
+      "target": "symbol:web/lib/api.js#function:correctMemory",
+      "tier": "proven",
+      "resolved": true,
+      "confidence": 0.7,
+      "extractor": "conservative-js-calls"
+    },
+    {
+      "type": "calls",
+      "source": "symbol:web/app/components/MemoryPanel.js#function:MemoryPanel",
+      "target": "symbol:web/lib/api.js#function:downloadDataUrl",
+      "tier": "proven",
+      "resolved": true,
+      "confidence": 0.7,
+      "extractor": "conservative-js-calls"
+    },
+    {
+      "type": "calls",
+      "source": "symbol:web/app/components/MemoryPanel.js#function:MemoryPanel",
+      "target": "symbol:web/lib/api.js#function:forgetEverything",
+      "tier": "proven",
+      "resolved": true,
+      "confidence": 0.7,
+      "extractor": "conservative-js-calls"
+    },
+    {
+      "type": "calls",
+      "source": "symbol:web/app/components/MemoryPanel.js#function:MemoryPanel",
+      "target": "symbol:web/lib/api.js#function:forgetMemory",
+      "tier": "proven",
+      "resolved": true,
+      "confidence": 0.7,
+      "extractor": "conservative-js-calls"
+    },
+    {
+      "type": "calls",
+      "source": "symbol:web/app/components/MemoryPanel.js#function:MemoryPanel",
+      "target": "symbol:web/lib/api.js#function:getMemories",
+      "tier": "proven",
+      "resolved": true,
+      "confidence": 0.7,
+      "extractor": "conservative-js-calls"
+    },
+    {
+      "type": "calls",
+      "source": "symbol:web/app/components/MemoryPanel.js#function:MemoryPanel",
+      "target": "symbol:web/lib/api.js#function:getRetrieval",
+      "tier": "proven",
+      "resolved": true,
+      "confidence": 0.7,
+      "extractor": "conservative-js-calls"
+    },
+    {
+      "type": "calls",
+      "source": "symbol:web/app/components/MemoryPanel.js#function:MemoryPanel",
+      "target": "symbol:web/lib/api.js#function:withdrawConsent",
+      "tier": "proven",
+      "resolved": true,
+      "confidence": 0.7,
+      "extractor": "conservative-js-calls"
+    },
+    {
+      "type": "calls",
+      "source": "symbol:web/app/ops/page.js#function:OpsDashboard",
+      "target": "symbol:web/lib/api.js#function:getOpsMetrics",
+      "tier": "proven",
+      "resolved": true,
+      "confidence": 0.7,
+      "extractor": "conservative-js-calls"
+    },
+    {
+      "type": "calls",
+      "source": "symbol:web/app/page.js#function:Home",
+      "target": "symbol:web/app/page.js#function:consentKey",
+      "tier": "proven",
+      "resolved": true,
+      "confidence": 0.75,
+      "extractor": "conservative-js-calls"
+    },
+    {
+      "type": "calls",
+      "source": "symbol:web/app/page.js#function:Home",
+      "target": "symbol:web/lib/api.js#function:listCustomers",
+      "tier": "proven",
+      "resolved": true,
+      "confidence": 0.7,
+      "extractor": "conservative-js-calls"
+    },
+    {
+      "type": "calls",
+      "source": "symbol:web/lib/api.js#function:correctMemory",
+      "target": "symbol:web/lib/api.js#function:request",
+      "tier": "proven",
+      "resolved": true,
+      "confidence": 0.75,
+      "extractor": "conservative-js-calls"
+    },
+    {
+      "type": "calls",
+      "source": "symbol:web/lib/api.js#function:endConversation",
+      "target": "symbol:web/lib/api.js#function:request",
+      "tier": "proven",
+      "resolved": true,
+      "confidence": 0.75,
+      "extractor": "conservative-js-calls"
+    },
+    {
+      "type": "calls",
+      "source": "symbol:web/lib/api.js#function:forgetEverything",
+      "target": "symbol:web/lib/api.js#function:request",
+      "tier": "proven",
+      "resolved": true,
+      "confidence": 0.75,
+      "extractor": "conservative-js-calls"
+    },
+    {
+      "type": "calls",
+      "source": "symbol:web/lib/api.js#function:forgetMemory",
+      "target": "symbol:web/lib/api.js#function:request",
+      "tier": "proven",
+      "resolved": true,
+      "confidence": 0.75,
+      "extractor": "conservative-js-calls"
+    },
+    {
+      "type": "calls",
+      "source": "symbol:web/lib/api.js#function:getMemories",
+      "target": "symbol:web/lib/api.js#function:request",
+      "tier": "proven",
+      "resolved": true,
+      "confidence": 0.75,
+      "extractor": "conservative-js-calls"
+    },
+    {
+      "type": "calls",
+      "source": "symbol:web/lib/api.js#function:getOpsMetrics",
+      "target": "symbol:web/lib/api.js#function:request",
+      "tier": "proven",
+      "resolved": true,
+      "confidence": 0.75,
+      "extractor": "conservative-js-calls"
+    },
+    {
+      "type": "calls",
+      "source": "symbol:web/lib/api.js#function:getRetrieval",
+      "target": "symbol:web/lib/api.js#function:request",
+      "tier": "proven",
+      "resolved": true,
+      "confidence": 0.75,
+      "extractor": "conservative-js-calls"
+    },
+    {
+      "type": "calls",
+      "source": "symbol:web/lib/api.js#function:listCustomers",
+      "target": "symbol:web/lib/api.js#function:request",
+      "tier": "proven",
+      "resolved": true,
+      "confidence": 0.75,
+      "extractor": "conservative-js-calls"
+    },
+    {
+      "type": "calls",
+      "source": "symbol:web/lib/api.js#function:sendChat",
+      "target": "symbol:web/lib/api.js#function:request",
+      "tier": "proven",
+      "resolved": true,
+      "confidence": 0.75,
+      "extractor": "conservative-js-calls"
+    },
+    {
+      "type": "calls",
+      "source": "symbol:web/lib/api.js#function:withdrawConsent",
+      "target": "symbol:web/lib/api.js#function:request",
+      "tier": "proven",
+      "resolved": true,
+      "confidence": 0.75,
+      "extractor": "conservative-js-calls"
+    },
+    {
       "type": "defines",
       "source": "file:genesis-kit/tests/autonomy.test.mjs",
       "target": "symbol:genesis-kit/tests/autonomy.test.mjs#function:add",
@@ -21250,6 +22011,222 @@
       "extractor": "conservative-js-symbols"
     },
     {
+      "type": "defines",
+      "source": "file:web/app/components/ChatWindow.js",
+      "target": "symbol:web/app/components/ChatWindow.js#function:ChatWindow",
+      "line": 12,
+      "resolved": true,
+      "confidence": 0.8,
+      "extractor": "conservative-js-symbols"
+    },
+    {
+      "type": "defines",
+      "source": "file:web/app/components/ChatWindow.js",
+      "target": "symbol:web/app/components/ChatWindow.js#function:stripMarkdown",
+      "line": 8,
+      "resolved": true,
+      "confidence": 0.8,
+      "extractor": "conservative-js-symbols"
+    },
+    {
+      "type": "defines",
+      "source": "file:web/app/components/ConsentModal.js",
+      "target": "symbol:web/app/components/ConsentModal.js#function:ConsentModal",
+      "line": 6,
+      "resolved": true,
+      "confidence": 0.8,
+      "extractor": "conservative-js-symbols"
+    },
+    {
+      "type": "defines",
+      "source": "file:web/app/components/MemoryPanel.js",
+      "target": "symbol:web/app/components/MemoryPanel.js#function:MemoryPanel",
+      "line": 15,
+      "resolved": true,
+      "confidence": 0.8,
+      "extractor": "conservative-js-symbols"
+    },
+    {
+      "type": "defines",
+      "source": "file:web/app/components/UserSwitcher.js",
+      "target": "symbol:web/app/components/UserSwitcher.js#function:UserSwitcher",
+      "line": 3,
+      "resolved": true,
+      "confidence": 0.8,
+      "extractor": "conservative-js-symbols"
+    },
+    {
+      "type": "defines",
+      "source": "file:web/app/layout.js",
+      "target": "symbol:web/app/layout.js#function:RootLayout",
+      "line": 8,
+      "resolved": true,
+      "confidence": 0.8,
+      "extractor": "conservative-js-symbols"
+    },
+    {
+      "type": "defines",
+      "source": "file:web/app/layout.js",
+      "target": "symbol:web/app/layout.js#variable:metadata",
+      "line": 3,
+      "resolved": true,
+      "confidence": 0.8,
+      "extractor": "conservative-js-symbols"
+    },
+    {
+      "type": "defines",
+      "source": "file:web/app/ops/page.js",
+      "target": "symbol:web/app/ops/page.js#function:OpsDashboard",
+      "line": 7,
+      "resolved": true,
+      "confidence": 0.8,
+      "extractor": "conservative-js-symbols"
+    },
+    {
+      "type": "defines",
+      "source": "file:web/app/page.js",
+      "target": "symbol:web/app/page.js#function:consentKey",
+      "line": 10,
+      "resolved": true,
+      "confidence": 0.8,
+      "extractor": "conservative-js-symbols"
+    },
+    {
+      "type": "defines",
+      "source": "file:web/app/page.js",
+      "target": "symbol:web/app/page.js#function:Home",
+      "line": 14,
+      "resolved": true,
+      "confidence": 0.8,
+      "extractor": "conservative-js-symbols"
+    },
+    {
+      "type": "defines",
+      "source": "file:web/lib/api.js",
+      "target": "symbol:web/lib/api.js#function:correctMemory",
+      "line": 50,
+      "resolved": true,
+      "confidence": 0.8,
+      "extractor": "conservative-js-symbols"
+    },
+    {
+      "type": "defines",
+      "source": "file:web/lib/api.js",
+      "target": "symbol:web/lib/api.js#function:downloadDataUrl",
+      "line": 65,
+      "resolved": true,
+      "confidence": 0.8,
+      "extractor": "conservative-js-symbols"
+    },
+    {
+      "type": "defines",
+      "source": "file:web/lib/api.js",
+      "target": "symbol:web/lib/api.js#function:endConversation",
+      "line": 41,
+      "resolved": true,
+      "confidence": 0.8,
+      "extractor": "conservative-js-symbols"
+    },
+    {
+      "type": "defines",
+      "source": "file:web/lib/api.js",
+      "target": "symbol:web/lib/api.js#function:forgetEverything",
+      "line": 61,
+      "resolved": true,
+      "confidence": 0.8,
+      "extractor": "conservative-js-symbols"
+    },
+    {
+      "type": "defines",
+      "source": "file:web/lib/api.js",
+      "target": "symbol:web/lib/api.js#function:forgetMemory",
+      "line": 57,
+      "resolved": true,
+      "confidence": 0.8,
+      "extractor": "conservative-js-symbols"
+    },
+    {
+      "type": "defines",
+      "source": "file:web/lib/api.js",
+      "target": "symbol:web/lib/api.js#function:getMemories",
+      "line": 29,
+      "resolved": true,
+      "confidence": 0.8,
+      "extractor": "conservative-js-symbols"
+    },
+    {
+      "type": "defines",
+      "source": "file:web/lib/api.js",
+      "target": "symbol:web/lib/api.js#function:getOpsMetrics",
+      "line": 37,
+      "resolved": true,
+      "confidence": 0.8,
+      "extractor": "conservative-js-symbols"
+    },
+    {
+      "type": "defines",
+      "source": "file:web/lib/api.js",
+      "target": "symbol:web/lib/api.js#function:getRetrieval",
+      "line": 33,
+      "resolved": true,
+      "confidence": 0.8,
+      "extractor": "conservative-js-symbols"
+    },
+    {
+      "type": "defines",
+      "source": "file:web/lib/api.js",
+      "target": "symbol:web/lib/api.js#function:listCustomers",
+      "line": 18,
+      "resolved": true,
+      "confidence": 0.8,
+      "extractor": "conservative-js-symbols"
+    },
+    {
+      "type": "defines",
+      "source": "file:web/lib/api.js",
+      "target": "symbol:web/lib/api.js#function:request",
+      "line": 5,
+      "resolved": true,
+      "confidence": 0.8,
+      "extractor": "conservative-js-symbols"
+    },
+    {
+      "type": "defines",
+      "source": "file:web/lib/api.js",
+      "target": "symbol:web/lib/api.js#function:sendChat",
+      "line": 22,
+      "resolved": true,
+      "confidence": 0.8,
+      "extractor": "conservative-js-symbols"
+    },
+    {
+      "type": "defines",
+      "source": "file:web/lib/api.js",
+      "target": "symbol:web/lib/api.js#function:withdrawConsent",
+      "line": 69,
+      "resolved": true,
+      "confidence": 0.8,
+      "extractor": "conservative-js-symbols"
+    },
+    {
+      "type": "defines",
+      "source": "file:web/lib/api.js",
+      "target": "symbol:web/lib/api.js#variable:API_BASE",
+      "line": 3,
+      "resolved": true,
+      "confidence": 0.8,
+      "extractor": "conservative-js-symbols"
+    },
+    {
+      "type": "defines",
+      "source": "file:web/next.config.js",
+      "target": "symbol:web/next.config.js#variable:nextConfig",
+      "line": 2,
+      "resolved": true,
+      "confidence": 0.8,
+      "extractor": "conservative-js-symbols"
+    },
+    {
       "type": "imports",
       "source": "file:genesis-kit/tests/autonomy.test.mjs",
       "target": "package:npm:test",
@@ -22178,12 +23155,162 @@
       "resolved": true,
       "confidence": 0.85,
       "extractor": "javascript-imports"
+    },
+    {
+      "type": "imports",
+      "source": "file:web/app/components/ChatWindow.js",
+      "target": "file:web/lib/api.js",
+      "specifier": "../../lib/api",
+      "line": 4,
+      "resolved": true,
+      "confidence": 0.85,
+      "extractor": "javascript-imports"
+    },
+    {
+      "type": "imports",
+      "source": "file:web/app/components/ChatWindow.js",
+      "target": "package:npm:react",
+      "specifier": "react",
+      "line": 2,
+      "resolved": false,
+      "confidence": 0.5,
+      "extractor": "javascript-imports"
+    },
+    {
+      "type": "imports",
+      "source": "file:web/app/components/MemoryPanel.js",
+      "target": "file:web/lib/api.js",
+      "specifier": "../../lib/api",
+      "line": 4,
+      "resolved": true,
+      "confidence": 0.85,
+      "extractor": "javascript-imports"
+    },
+    {
+      "type": "imports",
+      "source": "file:web/app/components/MemoryPanel.js",
+      "target": "package:npm:react",
+      "specifier": "react",
+      "line": 2,
+      "resolved": false,
+      "confidence": 0.5,
+      "extractor": "javascript-imports"
+    },
+    {
+      "type": "imports",
+      "source": "file:web/app/layout.js",
+      "target": "unresolved:web/app/layout.js:./globals.css",
+      "specifier": "./globals.css",
+      "line": 1,
+      "resolved": false,
+      "confidence": 0.4,
+      "extractor": "javascript-imports"
+    },
+    {
+      "type": "imports",
+      "source": "file:web/app/ops/page.js",
+      "target": "file:web/lib/api.js",
+      "specifier": "../../lib/api",
+      "line": 4,
+      "resolved": true,
+      "confidence": 0.85,
+      "extractor": "javascript-imports"
+    },
+    {
+      "type": "imports",
+      "source": "file:web/app/ops/page.js",
+      "target": "package:npm:react",
+      "specifier": "react",
+      "line": 2,
+      "resolved": false,
+      "confidence": 0.5,
+      "extractor": "javascript-imports"
+    },
+    {
+      "type": "imports",
+      "source": "file:web/app/page.js",
+      "target": "file:web/app/components/ChatWindow.js",
+      "specifier": "./components/ChatWindow",
+      "line": 7,
+      "resolved": true,
+      "confidence": 0.85,
+      "extractor": "javascript-imports"
+    },
+    {
+      "type": "imports",
+      "source": "file:web/app/page.js",
+      "target": "file:web/app/components/ConsentModal.js",
+      "specifier": "./components/ConsentModal",
+      "line": 6,
+      "resolved": true,
+      "confidence": 0.85,
+      "extractor": "javascript-imports"
+    },
+    {
+      "type": "imports",
+      "source": "file:web/app/page.js",
+      "target": "file:web/app/components/MemoryPanel.js",
+      "specifier": "./components/MemoryPanel",
+      "line": 8,
+      "resolved": true,
+      "confidence": 0.85,
+      "extractor": "javascript-imports"
+    },
+    {
+      "type": "imports",
+      "source": "file:web/app/page.js",
+      "target": "file:web/app/components/UserSwitcher.js",
+      "specifier": "./components/UserSwitcher",
+      "line": 5,
+      "resolved": true,
+      "confidence": 0.85,
+      "extractor": "javascript-imports"
+    },
+    {
+      "type": "imports",
+      "source": "file:web/app/page.js",
+      "target": "file:web/lib/api.js",
+      "specifier": "../lib/api",
+      "line": 4,
+      "resolved": true,
+      "confidence": 0.85,
+      "extractor": "javascript-imports"
+    },
+    {
+      "type": "imports",
+      "source": "file:web/app/page.js",
+      "target": "package:npm:react",
+      "specifier": "react",
+      "line": 2,
+      "resolved": false,
+      "confidence": 0.5,
+      "extractor": "javascript-imports"
+    },
+    {
+      "type": "imports",
+      "source": "file:web/playwright.config.js",
+      "target": "package:npm:@playwright/test",
+      "specifier": "@playwright/test",
+      "line": 2,
+      "resolved": false,
+      "confidence": 0.5,
+      "extractor": "javascript-imports"
+    },
+    {
+      "type": "imports",
+      "source": "file:web/tests/e2e/demo.spec.js",
+      "target": "package:npm:@playwright/test",
+      "specifier": "@playwright/test",
+      "line": 2,
+      "resolved": false,
+      "confidence": 0.5,
+      "extractor": "javascript-imports"
     }
   ],
   "warnings": [
     "Python AST unavailable: Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases."
   ],
   "stats": {
-    "unresolvedCalls": 597
+    "unresolvedCalls": 637
   }
 }

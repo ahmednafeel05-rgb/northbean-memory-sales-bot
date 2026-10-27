@@ -1,0 +1,30 @@
+{
+  "task": "S4",
+  "gate": "demo",
+  "kind": "command",
+  "attempt": "c9657529-1ac8-4dca-90bb-00f7801b9c56",
+  "command": "pytest tests/test_s4_read_path.py",
+  "started_at": "2026-10-27T10:25:44.362Z",
+  "observed_at": "2026-10-27T10:26:46.971Z",
+  "exit_code": 1,
+  "signal": null,
+  "stdout": "============================= test session starts =============================\r\nplatform win32 -- Python 3.13.2, pytest-9.1.1, pluggy-1.6.0\r\nrootdir: C:\\Users\\hp\\Downloads\\northbean-handoff\\northbean-handoff\r\nplugins: anyio-4.10.0, cov-7.1.0\r\ncollected 3 items\r\n\r\ntests\\test_s4_read_path.py F..                                           [100%]\r\n\r\n================================== FAILURES ===================================\r\n_______ test_always_loaded_memories_are_retrieved_scored_and_reinforced _______\r\n\r\nmaya_seeded = UUID('d6fc53f0-2c45-5ff6-bcf5-c17b815d0c6b')\r\n\r\n    def test_always_loaded_memories_are_retrieved_scored_and_reinforced(maya_seeded):\r\n        with psycopg.connect(ADMIN_URL, row_factory=dict_row) as conn:\r\n            before = conn.execute(\r\n                \"SELECT id, category, reinforcement FROM memories WHERE customer_id = %s AND status = 'active'\",\r\n                (MAYA_ID,),\r\n            ).fetchall()\r\n>       assert {\"brew_method\", \"taste\", \"budget\"} <= {r[\"category\"] for r in before}\r\nE       AssertionError: assert {'brew_method...get', 'taste'} <= {'brew_method', 'budget'}\r\nE         \r\nE         Extra items in the left set:\r\nE         'taste'\r\n\r\ntests\\test_s4_read_path.py:100: AssertionError\r\n=========================== short test summary info ===========================\r\nFAILED tests/test_s4_read_path.py::test_always_loaded_memories_are_retrieved_scored_and_reinforced\r\n======================== 1 failed, 2 passed in 59.18s =========================\r\n",
+  "stderr": "",
+  "failure": "command-failed",
+  "receipt": null,
+  "revision": {
+    "commit": "3db8e7ebd361f8b24cf82dcb762c27dcc97b7e00",
+    "dirty": true
+  },
+  "source_hash": "17ed83da577d4e5459ccdbc060fff5e44411418f0b47b2f8019adbc170fbee04",
+  "before_hash": "17ed83da577d4e5459ccdbc060fff5e44411418f0b47b2f8019adbc170fbee04",
+  "config_hash": "916d7ca096fb793dd454d2a66d692c12cc919fc3f6b74ec5a0905247694debc8",
+  "environment": {
+    "node": "v22.22.3",
+    "platform": "win32",
+    "arch": "x64",
+    "verifier": "cbdddbf25e5ed5f3406b93881ae54f64d11a8c54f0bfe177d19d9d9946a6a971",
+    "variables": {}
+  },
+  "hash": "1def97ddc2c5aae9135a38b4224a8a0f7beeadbba799e7c3ba3c5b2bc23a9e8d"
+}
