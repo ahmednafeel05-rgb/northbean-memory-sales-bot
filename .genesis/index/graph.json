@@ -1,8 +1,8 @@
 {
   "schemaVersion": 2,
   "project": "northbean-handoff",
-  "revision": "3db8e7ebd361f8b24cf82dcb762c27dcc97b7e00",
-  "sourceHash": "719e726deb82c0d47378463005836a36fc7a34c881d1d3d758226c183e1d7eb8",
+  "revision": "62a769b78db0b24952689142798b3cdd2aeb6222",
+  "sourceHash": "b9d7606158929c0ed0d8d44c5b952fa310a8b972bcf906080b409125f0dd6a97",
   "provenance": {
     "tool": "genesis-graphizer",
     "method": "static-analysis",
@@ -27,7 +27,7 @@
       "language": "python",
       "confidence": 1,
       "extractor": "filesystem",
-      "contentHash": "f496e059ed7e4a780eafbc42cbf3985af7e059a3b234763ce7ca94b4544ae39b"
+      "contentHash": "1f6870e508ddf11663034a6f2796d15d20bfeaaa909cfc3cc734e5b8e565c955"
     },
     {
       "id": "file:api/app/embeddings.py",
@@ -67,7 +67,7 @@
       "language": "python",
       "confidence": 1,
       "extractor": "filesystem",
-      "contentHash": "73f70ccbfcfede2926bcb1d149e42a7526c332af6491dd09482d2e618f0bd641"
+      "contentHash": "8e9261cb9304e4e380e43b0ee8d738b63aecfe87488c9639c5a604604c4acaf5"
     },
     {
       "id": "file:api/app/main.py",
@@ -167,7 +167,7 @@
       "language": "python",
       "confidence": 1,
       "extractor": "filesystem",
-      "contentHash": "9f34a5c469d323c90e0442402c4fb0e9ca0948d551fcf7042d8c42cfae5417f0"
+      "contentHash": "e40e1f7f3e52225d7c896cedb66653a3c11d7a1057b15e96b982911660a7717d"
     },
     {
       "id": "file:genesis-kit/tests/autonomy.test.mjs",
@@ -10367,7 +10367,7 @@
       "language": "python",
       "confidence": 1,
       "extractor": "filesystem",
-      "contentHash": "77839cbd3fbf6b62d6336ea70048f730a9c26243195b9943ed1fbf65e48f48f1"
+      "contentHash": "000f7237d8f0f4058f88c2fc507a0ef2a8e6344fe161732610d54827ea5ad87a"
     },
     {
       "id": "file:web/app/components/ChatWindow.js",

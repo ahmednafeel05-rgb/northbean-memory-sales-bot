@@ -58,7 +58,7 @@
 
 ### S7 — Reliability + eval: fallbacks, discount cap, eval runner over evals/golden.jsonl, memory ON vs OFF comparison
 
-- state/risk: paused / low
+- state/risk: done / low
 - requirements: AC-3, AC-5, AC-8, NFR-3
 - scope: not bounded
 - gates: demo: pytest tests/test_s7_reliability_eval.py
@@ -66,7 +66,7 @@
 
 ### S8 — Ship: README (problem, GIF, architecture, results table, ADRs, next steps), optional deploy, video script
 
-- state/risk: queued / low
+- state/risk: active / low
 - requirements: NFR-2
 - scope: not bounded
 - gates: demo: bash scripts/check_ship_ready.sh

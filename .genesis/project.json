@@ -9,7 +9,7 @@
     "non_goals": [],
     "trust_boundary": "local repository",
     "created_at": "2026-10-23T05:42:41.284Z",
-    "updated_at": "2026-10-27T17:32:31.431Z"
+    "updated_at": "2026-10-28T16:45:13.487Z"
   },
   "policy": {
     "ponytail": "full",
@@ -24,8 +24,8 @@
   },
   "lifecycle": {
     "phase": "build",
-    "status": "paused",
-    "active_task": "S7",
+    "status": "active",
+    "active_task": "S8",
     "blocker": null,
     "next_action": "Run the task pre-flight."
   },
@@ -250,6 +250,16 @@
       "status": "accepted",
       "source": "docs/DESIGN_BRIEF.md sec8, NFR-1",
       "recorded_at": "2026-10-26T06:38:12.725Z",
+      "paths": [],
+      "tags": []
+    },
+    {
+      "id": "DECISION-8dc2c78d",
+      "title": "LLM provider: Vertex AI (paid) primary, Groq free-tier fallback",
+      "text": "Supersedes DECISION-acd25f2b (free-tier only). Naf's call (2026-10-28), driven by real-deployment scale (50-100 users won't fit Gemini AI Studio's 20 req/day free cap, confirmed from the actual 429 error). Reply model (llm.py) now calls vertex_ai/gemini-3.5-flash via GCP project flash-spark-443119-s6 (paid tier, service-account auth, global region) as primary, with Groq's free tier still as fallback. Cost for demo-scale traffic is small but real, unlike the all-free setup before. Naf confirmed he does not mind the small spend -- Vertex AI's paid tier also does not train on prompt data by default, same privacy intent as the original free-tier synthetic-data-only reasoning. embeddings.py was NOT migrated -- it still calls gemini/gemini-embedding-001 via the old AI Studio GEMINI_API_KEY, a separate quota from the chat model.",
+      "status": "accepted",
+      "source": "SESSION_LOG.md 2026-10-28 entry",
+      "recorded_at": "2026-10-28T16:45:13.475Z",
       "paths": [],
       "tags": []
     }
@@ -746,7 +756,7 @@
     {
       "id": "S7",
       "outcome": "Reliability + eval: fallbacks, discount cap, eval runner over evals/golden.jsonl, memory ON vs OFF comparison",
-      "state": "paused",
+      "state": "done",
       "risk": "low",
       "owner": null,
       "scope": [],
@@ -766,8 +776,14 @@
           "kind": "command",
           "command": "pytest tests/test_s7_reliability_eval.py",
           "mandatory": true,
-          "status": "pending",
-          "evidence": null
+          "status": "pass",
+          "evidence": {
+            "path": ".genesis/evidence/S7-demo-5b6b6f8e-e7a0-440b-9f9a-cc6f96453ec0.json",
+            "hash": "bb72fe4d8aa539c6b1cdabb04e763e0d9f0c79e62ab0c548f6524b468b83caef",
+            "source_hash": "1ecc27a8ec8d388de41ec375fffa11fdcf2666f3e91e213a6c846017541283fe",
+            "config_hash": "060d34023556e65c2f9d56685d2ea93c10ab444c9e339dfd19dbca79b6c1c546",
+            "observed_at": "2026-10-28T10:59:28.469Z"
+          }
         }
       ],
       "next_action": "Run the task pre-flight.",
@@ -776,7 +792,7 @@
       "failures": [],
       "limitations": [],
       "created_at": "2026-10-23T06:22:12.374Z",
-      "updated_at": "2026-10-23T06:22:12.375Z",
+      "updated_at": "2026-10-28T10:59:37.534Z",
       "base_manifest": {
         ".dockerignore": "9a0591431c72356a68593bfd562475b066c08151b48d2654d4a96039cb34f21d",
         ".gitignore": "ab430971cfd5057bb1694d23b038ccce5b10f69f6304bb3d2c384e71ddc8e7ad",
@@ -836,7 +852,7 @@
     {
       "id": "S8",
       "outcome": "Ship: README (problem, GIF, architecture, results table, ADRs, next steps), optional deploy, video script",
-      "state": "queued",
+      "state": "active",
       "risk": "low",
       "owner": null,
       "scope": [],
@@ -863,7 +879,65 @@
       "failures": [],
       "limitations": [],
       "created_at": "2026-10-23T06:22:12.982Z",
-      "updated_at": "2026-10-23T06:22:12.983Z"
+      "updated_at": "2026-10-23T06:22:12.983Z",
+      "base_manifest": {
+        ".dockerignore": "9a0591431c72356a68593bfd562475b066c08151b48d2654d4a96039cb34f21d",
+        ".gitignore": "ab430971cfd5057bb1694d23b038ccce5b10f69f6304bb3d2c384e71ddc8e7ad",
+        "CLAUDE.md": "156dd0a9761d4537604436a5f1681372f5ac77bbaebd6aaba89041f9ad23fa50",
+        "HANDOFF.md": "013326d5642dc15c912d90a1128ad4738c0ebc260a54488e033ce76daa2561e0",
+        "SESSION_LOG.md": "dbe7855a5463105a2043acdb793ab44868346bc57447c8e5a9cf087a6bc15114",
+        "SPEC.md": "78eb7b3342f5b0d0398522c6207f4f23e48ca946695f6773386ae601a2f47897",
+        "adr/001-postgres-pgvector.md": "0c96d42cd2bf9f60c917b92131e3c2a30fab6d918ec997581d5b461bbfc91cec",
+        "adr/003-embedding-model.md": "9532766af165fc86b5471a824478e640cf375db8c0ccb2dd85864b225efd99cd",
+        "api/Dockerfile": "981c8eea0046673164346800a587587096486223b953098d2df62cd0ab34006c",
+        "api/app/__init__.py": "78fb5f112b9e331e6d45cc7ba20c364344137c40dce44296fbdbe7854ba5bea2",
+        "api/app/agent.py": "9672ad6f83ae6b458bc43208e3d4022605d3cf41a4bb4d5bc586c1926797a1a6",
+        "api/app/embeddings.py": "254ad21e02ac46cca0f34d8d5c3cb1afb6caf8b413031044d0fca7f3be69b421",
+        "api/app/evaluator.py": "fe428deedc609e37c925c24c047e10cfd1f3989ee4cdb0d8bf3d6bb131cfdcd8",
+        "api/app/extractor.py": "4e53bf09099dd1f413bf09cd1f5f62570ffc9fa1230c0b2506c1746906020012",
+        "api/app/llm.py": "b00626299d8b35121cdc59907bea42ddc40cd053703c11af3f974e81131866d9",
+        "api/app/main.py": "c5aa77405de4b802a4b6ae5400a311631c696655e89d2d853997eac57f9bd6b1",
+        "api/app/memory_repo.py": "e72400084898b43aba3a23472b04e6ef35b2b069063bade5f812775dd1c6ec5a",
+        "api/app/pii_filter.py": "7d3abdf6d3ca69b4f2beb343086ed299cd547d71fc00fb3f2b5ee992e2006894",
+        "api/app/read_path.py": "d08ac4f480cdd12526d3e7a819c0ee1ab49a0f95cbba4596c22cef1d94637007",
+        "api/app/reply_checker.py": "83f7f75741be9a1fb83530dc289796c6c4846781d80076a1f5f404211a76cc94",
+        "api/app/tools.py": "3a8b9d72dbe68b679f2d053a8081243ec9ebf29ce50824d52ab2e989c9278e6c",
+        "api/app/write_path.py": "5cf31bec511ec03f57b57fd23ef20a82a363dd24d72e1715abc699af713e9694",
+        "api/requirements.txt": "9d4fe519a4d8b6d67b5648d2a428023fe7aa2106aa012ffa20bcab99f59e2a54",
+        "data/personas.json": "756e2f15cecf13f6b859ee67404504e5a450e66c2be036a68a550b7f60abb755",
+        "data/products.json": "45b6e0fb510090c54a58bf80a947130f198a3a9e66db909f263938e1b24da222",
+        "db/schema.sql": "bb5d2e82e2669207e59ad042b38a2bf07f5594f38e5610f47e4b2ecd14bed8a0",
+        "db/seed.py": "964c140d339a12db57adde04b538c14bf68e15a98fc588d2348b761a442e0dc3",
+        "docker-compose.yml": "91d5cf6db21a8059af84e18c581d2592731eb64d84dcee29caab6fcf5e57dbbe",
+        "docs/DESIGN_BRIEF.md": "5d9274ee25084e30c60d33c5313ce94856de9a01731bb53d5c2298b401c4f53a",
+        "docs/SESSION_LOG.md": "b576605a6c9148daf8aebe2555518086c43b131202b3d18de26f620076f6e028",
+        "evals/__init__.py": "78fb5f112b9e331e6d45cc7ba20c364344137c40dce44296fbdbe7854ba5bea2",
+        "evals/golden.jsonl": "000f02e3d290f62a2959d106890b30d04e79a8ddd5f3ade79e88a07bf2d16ee6",
+        "evals/run_eval.py": "ed901c090a25a55895f29c7d6e08ebc1258dd48027ea7b157d846bbfc0fbbade",
+        "requirements-dev.txt": "71f191ba8d88a3310f006677042c8a5dd2e80873ffdf11a2e10f42325e84b410",
+        "test.py": "cee0009f8b4976fec3853e4e5a4dc0911439996e224b539cc30ba2514e86eed7",
+        "tests/test_s1_foundation.py": "8ebb4a56c152027a1c4f741074a82d3cc262b174d6896ae49f18b31cc61b1ea9",
+        "tests/test_s2_chat_tools.py": "b22bd3e0c228e6cc9c4a4755f4b11a8ed81db30776bc5f96dd5f0e0328a2754c",
+        "tests/test_s3_write_path.py": "e7031bb383b0bdae093ee6c78ca0c449d1b84091b5707424eb077fa464915e34",
+        "tests/test_s4_read_path.py": "7304b1f29fdef958bbb3b538316b1c43ad7d4ea9872880b60fd7d0fcab68bc61",
+        "tests/test_s6_governance_decay.py": "b2d3f43f6fdfa07c371455548731aa8719aad876f3310ec848059a0c6b189fba",
+        "tests/test_s7_reliability_eval.py": "e429dcada31f251164b8d8d92a86a3824f3954f209dcbd01c6b066d85f2b7b53",
+        "web/Dockerfile": "de53d0b571471bfef4def2fea618d00976241bcf1fddbe931e432b0d6ec6a918",
+        "web/app/components/ChatWindow.js": "22407b2190a37231720f4bd899824f766ac1c61a7953e37f7dda8862ee8c58a8",
+        "web/app/components/ConsentModal.js": "b58e4b684e7e6c590901de0cf2e4f33ad4ee73896529885f4b44b10808a4755c",
+        "web/app/components/MemoryPanel.js": "017fd6454b44e96b6ce7e3577b6eb89ef9769ab554e83d55948ebf036527e619",
+        "web/app/components/UserSwitcher.js": "2210bf387839015f4def9a46192a4d64b3afc8528887d15479ab6e1ff5ca16da",
+        "web/app/globals.css": "c367f8972f32053a4587d9b5c7243d708f57e1b0719eb9b5d3b225fda3423762",
+        "web/app/layout.js": "dc7ad79881431bc00c0ab48f8ed1d2e1e23d0d1e66bcc51893de4eaf5ad34681",
+        "web/app/ops/page.js": "b2f62559a0a89b764d6864ad5662defe3317ade9431929bc9da993e11e222746",
+        "web/app/page.js": "7759466e955495fcab8192799ef855b4e87b4354ddde28780d718e59e0d8c841",
+        "web/lib/api.js": "3a360ad68964315d95dd2cb8acf9390e3d734128f921a6bb4ee626de7291c42c",
+        "web/next.config.js": "e08a65723912fcb3ae0de089e2d71b1cbf1deeea112c70ab2d4ffc1d64ef67bd",
+        "web/package-lock.json": "d30a8f9a22403ef76e130c0351722165750f52e864a25e7b02989bf2db448333",
+        "web/package.json": "461b0717b0871d2a26950b8c4783746c9d1ab46aab1a92a565b7528321de4aa7",
+        "web/playwright.config.js": "f568778980c5b971c90e7c9a8d1b49e9cb5c9e7f8064886a313dae7e63c8c62f",
+        "web/tests/e2e/demo.spec.js": "6809c5082d4e4728ac869eb1958399d509e65886c202cebcefbc58b5bb69219b"
+      }
     }
   ],
   "learning_proposals": [],
@@ -876,6 +950,15 @@
       "task": "S7",
       "human": null,
       "reason": "Groq daily token quota (TPD) exhausted ~198.9k/200k and Gemini primary failing all session; golden-set eval (AC-8) needs ~30-40 more LLM calls. Naf chose to wait and retry later rather than rotate keys now. Discount cap + DB-outage fallback tests already pass.",
+      "revision": null
+    },
+    {
+      "id": "ade1ae51-875a-456d-a19b-0f3afbd2b6ac",
+      "at": "2026-10-28T10:45:49.983Z",
+      "action": "resume",
+      "task": "S7",
+      "human": null,
+      "reason": null,
       "revision": null
     }
   ],
@@ -1119,6 +1202,78 @@
       "cost": null,
       "stop_reason": null,
       "ended_at": "2026-10-27T16:42:06.022Z"
+    },
+    {
+      "id": "fbd406ba-231e-4ac5-9135-cad849bf8451",
+      "task": "S7",
+      "kind": "gate",
+      "command": "pytest tests/test_s7_reliability_eval.py",
+      "timeout": 120000,
+      "authorization": null,
+      "pid": 19696,
+      "child_pid": 4616,
+      "started_at": "2026-10-28T10:45:57.578Z",
+      "status": "failed",
+      "before_hash": "1ecc27a8ec8d388de41ec375fffa11fdcf2666f3e91e213a6c846017541283fe",
+      "config_hash": "060d34023556e65c2f9d56685d2ea93c10ab444c9e339dfd19dbca79b6c1c546",
+      "environment": {
+        "node": "v22.22.3",
+        "platform": "win32",
+        "arch": "x64",
+        "verifier": "cbdddbf25e5ed5f3406b93881ae54f64d11a8c54f0bfe177d19d9d9946a6a971",
+        "variables": {}
+      },
+      "cost": null,
+      "stop_reason": "timeout",
+      "ended_at": "2026-10-28T10:50:14.522Z"
+    },
+    {
+      "id": "46c1388a-9a1c-4016-b361-4756bf85f2a0",
+      "task": "S7",
+      "kind": "gate",
+      "command": "pytest tests/test_s7_reliability_eval.py",
+      "timeout": 120000,
+      "authorization": null,
+      "pid": 11924,
+      "child_pid": 14300,
+      "started_at": "2026-10-28T10:50:33.752Z",
+      "status": "failed",
+      "before_hash": "1ecc27a8ec8d388de41ec375fffa11fdcf2666f3e91e213a6c846017541283fe",
+      "config_hash": "060d34023556e65c2f9d56685d2ea93c10ab444c9e339dfd19dbca79b6c1c546",
+      "environment": {
+        "node": "v22.22.3",
+        "platform": "win32",
+        "arch": "x64",
+        "verifier": "cbdddbf25e5ed5f3406b93881ae54f64d11a8c54f0bfe177d19d9d9946a6a971",
+        "variables": {}
+      },
+      "cost": null,
+      "stop_reason": "timeout",
+      "ended_at": "2026-10-28T10:54:37.605Z"
+    },
+    {
+      "id": "5b6b6f8e-e7a0-440b-9f9a-cc6f96453ec0",
+      "task": "S7",
+      "kind": "gate",
+      "command": "pytest tests/test_s7_reliability_eval.py",
+      "timeout": 400000,
+      "authorization": null,
+      "pid": 9760,
+      "child_pid": 12160,
+      "started_at": "2026-10-28T10:55:20.076Z",
+      "status": "passed",
+      "before_hash": "1ecc27a8ec8d388de41ec375fffa11fdcf2666f3e91e213a6c846017541283fe",
+      "config_hash": "060d34023556e65c2f9d56685d2ea93c10ab444c9e339dfd19dbca79b6c1c546",
+      "environment": {
+        "node": "v22.22.3",
+        "platform": "win32",
+        "arch": "x64",
+        "verifier": "cbdddbf25e5ed5f3406b93881ae54f64d11a8c54f0bfe177d19d9d9946a6a971",
+        "variables": {}
+      },
+      "cost": null,
+      "stop_reason": null,
+      "ended_at": "2026-10-28T10:59:28.469Z"
     }
   ],
   "authorizations": [],
@@ -1126,13 +1281,13 @@
   "incidents": [],
   "discovery": null,
   "checkpoint": {
-    "at": "2026-10-27T17:32:31.084Z",
+    "at": "2026-10-28T10:59:43.394Z",
     "revision": {
-      "commit": "3db8e7ebd361f8b24cf82dcb762c27dcc97b7e00",
+      "commit": "62a769b78db0b24952689142798b3cdd2aeb6222",
       "dirty": true,
-      "source_hash": "ea6ad87aa5eb634756357b1d86f5b7c738c073906fa42f6bb56064da377539a1"
+      "source_hash": "1ecc27a8ec8d388de41ec375fffa11fdcf2666f3e91e213a6c846017541283fe"
     },
-    "active_task": "S7",
+    "active_task": "S8",
     "next_action": "Run the task pre-flight."
   },
   "legacy": null

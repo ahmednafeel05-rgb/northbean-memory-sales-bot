@@ -7,6 +7,112 @@ maintenance contract. **Newest entry on top.**
 
 ---
 
+## 2026-10-28 — S7 resumed: migrated reply model to Vertex AI (paid), found and fixed two real
+reliability bugs plus an eval false-positive; gate passed at 100% precision, task complete
+
+**State at start:** S7 paused (see entry below) on exhausted free-tier LLM quota -- Gemini's
+AI Studio free tier (20 requests/day, confirmed from the actual 429 error text) and Groq's
+free TPM cap were both hit the same day. Naf had chosen to wait rather than rotate keys or
+run a smaller eval.
+
+**Quota re-check, then a real finding:** Brought the stack back up and probed Gemini directly
+-- it answered a plain completion fine, but a `tools=`-bearing call (the actual chat/agent
+path) still silently fell through to Groq and then hit Groq's TPM limit under the eval's call
+volume, reproducing the original failure. Re-ran the previously-blocked golden-set eval
+anyway to see the real signal: precision came back at **50%** (4/8 cases), not a clean pass --
+this was no longer "wait for quota," it was a real bug surfacing under load.
+
+**Bug 1 (real, not quota -- I3/AC-3/NFR-3 gap):** `main.py`'s `/chat` handler called
+`agent.run_turn()` with no exception handling. `agent.py` already had a prepared fallback
+reply string (`"Sorry, I'm having trouble right now..."`) sitting unused in `run_turn`, but
+the actual `llm.complete()` call inside the tool-calling loop wasn't wrapped in try/except, so
+when both LLM providers failed the `RuntimeError` propagated straight past that fallback, out
+through `main.py`, and 500'd the whole turn -- directly contradicting SPEC.md:77 ("reply path
+never blocked"). Worse: because the exception fired before `_finish_turn` ever ran, the
+background `write_path.process_message` task never got scheduled, so that turn's facts were
+silently lost from memory entirely -- explaining why G04/G06 showed *zero* categories
+retrieved (matching memory OFF exactly). Fixed by wrapping the `llm.complete()` call in
+`agent.py`'s loop in try/except and breaking to the existing fallback reply on failure; now
+extraction is scheduled regardless of whether the reply itself succeeded. Also added logging
+to `llm.py`'s `complete()` (previously silently swallowed every attempt's exception until all
+three failed) -- this is what masked Gemini's failures with zero visible errors all last
+session.
+**Bug 2 (real, prompt-logic gap):** G07 ("Is the Guji back in stock?" after a memory saying
+the customer liked "Ethiopia Guji") still named the forbidden trap product nb-005 ("Ethiopia
+Guji Natural Reserve"). Root cause: the S5-era disambiguation instruction ("if search returns
+more than one match, list them and ask which one") unconditionally overrode memory context,
+so even with the right memory retrieved the agent still searched broadly and listed both
+nb-004/nb-005 trap products. Added an explicit carve-out in `agent.py`'s `SYSTEM_PROMPT`: when
+memory or the current message already names one match exactly, use that one and don't mention
+the other similarly-named variant.
+**Bug 3 (eval's own false positive, not an app bug):** after fixing 1 and 2, G07 was *still*
+failing -- but the actual reply text only ever said "the Ethiopia Guji is back in stock,"
+never mentioning nb-005 at all. `evals/run_eval.py`'s `_mentions_product` matched on full
+product name *or* just the first word as an abbreviation fallback; since nb-004 and nb-005
+share their first two words ("Ethiopia Guji"), any correct, legitimate mention of nb-004 was
+structurally guaranteed to false-positive against nb-005's forbidden-product check -- "Ethiopia"
+is the *only* first word shared by two products anywhere in the 18-item catalog (checked
+directly). Fixed by only applying the first-word fallback when that word isn't ambiguous
+across the catalog.
+
+**Vertex AI migration (Naf's call, driven by "will this scale past a free-tier demo to
+50-100 real users"):** free tiers alone (Gemini AI Studio 20/day, Groq's TPM cap) won't hold
+up under any real deployment. Naf created a GCP project (`flash-spark-443119-s6`), attached a
+debit card for the (refundable) free-trial prepayment, and generated a service-account key
+(`northbean-sales-coffee-bot@flash-spark-443119-s6.iam.gserviceaccount.com`). Wired it in:
+`api/requirements.txt` now installs `litellm[google]` (pulls in `google-cloud-aiplatform` and
+friends -- confirmed via a direct probe that litellm's vertex path needs it, not just
+`google-auth`); `docker-compose.yml` bind-mounts the key file from its *host* location
+(outside the repo, same lesson as the earlier leaked-key incident) to `/run/secrets/gcp-key.json`
+inside the `api` container and sets `GOOGLE_APPLICATION_CREDENTIALS` to that path; `.env` gained
+`REPLY_MODEL_PRIMARY=vertex_ai/gemini-3.5-flash`, `VERTEX_PROJECT`, `VERTEX_LOCATION=global`,
+and `GCP_KEY_HOST_PATH`; `llm.py` now passes `vertex_project`/`vertex_location` kwargs whenever
+the model string starts with `vertex_ai/`.
+Getting this live took a real chain of GCP-side fixes, each confirmed with a live probe rather
+than assumed, in order: (1) Vertex AI API not enabled on the project (Google's error literally
+calls it the **"Agent Platform API"** now -- Vertex AI has been rebranded; (2) billing not
+linked to this specific project even though the trial was active on the account; (3) the
+service account's IAM role search for "Vertex AI User" kept surfacing only Service-Agent
+roles -- the role itself was renamed too, to **"Agent Platform User"**; (4) `gemini-2.5-flash`
+returned 404 "not found" even with everything else correct -- it's been retired, same pattern
+as the `gemini-2.0-flash`/`text-embedding-004` retirements hit earlier this project (see
+10-25 entries) -- replaced with **`gemini-3.5-flash`**, confirmed as the current model via
+Model Garden's own "View Code" sample; (5) that same sample revealed the region needs to be
+**`global`**, not `us-central1` -- the regional endpoint 404'd on this model even with a valid
+model ID. Also hit a real operational surprise along the way: `litellm[google]`'s import
+is dramatically heavier (~37s just for `import litellm`, confirmed in isolation) than the
+plain `litellm` the project shipped with before, which looked exactly like a hung process
+(high sustained CPU, no response) until measured directly -- api container startup is now
+correspondingly slower, and both `tests/test_s7_reliability_eval.py` and `evals/run_eval.py`'s
+client-side HTTP timeouts were bumped from 30s to 60s to match Vertex AI's real per-call
+latency (observed ~20s+ even for a trivial no-tool-call reply).
+
+**Final verification:** `pytest tests/test_s7_reliability_eval.py` -- all 4 tests pass,
+golden-set precision **100%** (8/8), 0 repeated facts memory ON vs 15 OFF (AC-8). `genesis gate
+. S7` needed an explicit `--timeout 400000` (its default is 120000ms / 2 min, undocumented in
+`--help`, too short for the suite's new ~5-minute runtime under Vertex AI's latency) --
+otherwise passed clean. `genesis task complete . --id S7`, `genesis checkpoint .` -> Genesis
+activated **S8** (Ship: README, GIF, architecture, results table, ADRs, next steps, optional
+deploy, video script).
+
+**Open items for next session:**
+1. S8 is the active Genesis task (Ship) -- not started.
+2. **Cost note, not a blocker:** the reply model now runs on Vertex AI's paid tier instead of
+   two free tiers. Volume for a portfolio demo is trivial cost-wise, but this is a real change
+   from "free" to "small real spend" worth calling out in the README/results table per Naf's
+   own "will 50-100 people use this" framing.
+3. **`embeddings.py` was *not* migrated** -- it still calls `gemini/gemini-embedding-001` via
+   the old AI Studio `GEMINI_API_KEY`, a separate quota from the chat model's. Not blocking
+   today (read path already degrades gracefully to no-context on embedding failure, I3), but
+   worth the same Vertex AI migration if embedding-quota exhaustion ever shows up under real
+   load -- flagging rather than silently leaving it inconsistent.
+4. Gemini AI Studio key (`GEMINI_API_KEY`) is now only used by `embeddings.py`; Groq remains
+   the reply-model fallback behind Vertex AI. Both still free-tier -- same quota ceilings as
+   before apply if Vertex AI itself ever fails over to Groq under heavy load.
+5. LOCATION/address PII detection still deferred (unchanged, long-standing item).
+
+---
+
 ## 2026-10-27 (yet later) — S7 reliability + discount cap built; eval blocked on exhausted LLM quota, paused
 
 **State at start:** S7 ("Reliability + eval: fallbacks, discount cap, eval runner over

@@ -1,0 +1,30 @@
+{
+  "task": "S7",
+  "gate": "demo",
+  "kind": "command",
+  "attempt": "fbd406ba-231e-4ac5-9135-cad849bf8451",
+  "command": "pytest tests/test_s7_reliability_eval.py",
+  "started_at": "2026-10-28T10:45:57.578Z",
+  "observed_at": "2026-10-28T10:50:14.522Z",
+  "exit_code": null,
+  "signal": "SIGKILL",
+  "stdout": "============================= test session starts =============================\r\nplatform win32 -- Python 3.13.2, pytest-9.1.1, pluggy-1.6.0\r\nrootdir: C:\\Users\\hp\\Downloads\\northbean-handoff\\northbean-handoff\r\nplugins: anyio-4.10.0, cov-7.1.0\r\ncollected 4 items\r\n\r\ntests\\test_s7_reliability_eval.py ....                                   [100%]\r\n\r\n======================== 4 passed in 252.39s (0:04:12) ========================\r\n",
+  "stderr": "",
+  "failure": "timeout",
+  "receipt": null,
+  "revision": {
+    "commit": "62a769b78db0b24952689142798b3cdd2aeb6222",
+    "dirty": true
+  },
+  "source_hash": "1ecc27a8ec8d388de41ec375fffa11fdcf2666f3e91e213a6c846017541283fe",
+  "before_hash": "1ecc27a8ec8d388de41ec375fffa11fdcf2666f3e91e213a6c846017541283fe",
+  "config_hash": "060d34023556e65c2f9d56685d2ea93c10ab444c9e339dfd19dbca79b6c1c546",
+  "environment": {
+    "node": "v22.22.3",
+    "platform": "win32",
+    "arch": "x64",
+    "verifier": "cbdddbf25e5ed5f3406b93881ae54f64d11a8c54f0bfe177d19d9d9946a6a971",
+    "variables": {}
+  },
+  "hash": "96199b356ff68bfa52719ff060dc414b7a36ad82658a79a04986c9a5dae5334e"
+}

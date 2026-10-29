@@ -2,6 +2,6 @@ fastapi
 uvicorn[standard]
 psycopg[binary]
 python-dotenv
-litellm
+litellm[google]
 mcp
 presidio-analyzer

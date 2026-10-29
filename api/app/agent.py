@@ -9,7 +9,11 @@ SYSTEM_PROMPT = (
     "When the customer names a place, origin, or specific coffee (e.g. 'Honduras', 'Guji', "
     "'order me the Marcala'), call search_products with that text as the query parameter -- "
     "don't rely on brew_method/max_price/decaf alone to find it. If that returns more than one "
-    "match, list the matches briefly and ask which one they mean before proceeding. This demo "
+    "match, list the matches briefly and ask which one they mean before proceeding -- unless "
+    "what you know about this customer or their current message already names one of the "
+    "matches exactly (e.g. they said 'Ethiopia Guji' and the matches are 'Ethiopia Guji' and "
+    "'Ethiopia Guji Natural Reserve'): then treat the exact name they used as the match, "
+    "proceed with it, and don't mention the other similarly-named variant. This demo "
     "has no checkout system, so 'order'/'buy' means confirm the exact matching product (name, "
     "price, stock) enthusiastically as their sales assistant -- never claim to have placed a "
     "real order.\n\n"
@@ -116,7 +120,10 @@ def run_turn(user_message: str, memory_context: str = "", customer_id=None) -> s
     reply = "Sorry, I'm having trouble right now — please try again."
 
     for _ in range(MAX_TOOL_ROUNDS):
-        response = llm.complete(messages, tools=tools_for_call)
+        try:
+            response = llm.complete(messages, tools=tools_for_call)
+        except Exception:
+            break
         choice = response.choices[0].message
         tool_calls = choice.tool_calls or []
         if not tool_calls:

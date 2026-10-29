@@ -23,8 +23,14 @@ services:
     environment:
       DATABASE_URL: postgresql://app_user:app_user_dev_only@db:5432/northbean
       ADMIN_DATABASE_URL: postgresql://postgres:postgres@db:5432/northbean
+      GOOGLE_APPLICATION_CREDENTIALS: /run/secrets/gcp-key.json
     env_file:
       - .env
+    volumes:
+      - type: bind
+        source: ${GCP_KEY_HOST_PATH}
+        target: /run/secrets/gcp-key.json
+        read_only: true
     depends_on:
       db:
         condition: service_healthy

@@ -30,14 +30,15 @@ def _customer_id(persona_id):
 
 def _post_chat(customer_id, message, retries=4):
     """Free-tier LLM rate limits turn into a transient 500 under load; retry with backoff
-    rather than treat it as an eval failure (same pattern as the other test suites)."""
+    rather than treat it as an eval failure (same pattern as the other test suites). 60s
+    accounts for Vertex AI's higher round-trip latency vs. Groq's."""
     data = json.dumps({"message": message, "customer_id": str(customer_id) if customer_id else None}).encode()
     for attempt in range(retries):
         req = urllib.request.Request(
             f"{API_URL}/chat", data=data, headers={"Content-Type": "application/json"}, method="POST"
         )
         try:
-            with urllib.request.urlopen(req, timeout=30) as resp:
+            with urllib.request.urlopen(req, timeout=60) as resp:
                 return json.loads(resp.read())
         except urllib.error.HTTPError as exc:
             if exc.code != 500 or attempt == retries - 1:
@@ -74,8 +75,17 @@ def _wait_for_processed(customer_id, content, timeout=25):
 
 
 def _mentions_product(reply, product_id):
+    """Full-name match, or first-word match as a shorthand-reference fallback -- except when
+    that first word is shared with another catalog product (e.g. the nb-004/nb-005 "Ethiopia
+    Guji"/"Ethiopia Guji Natural Reserve" trap), where it can't distinguish which one is meant
+    and would false-positive on any legitimate mention of the other."""
     name = PRODUCTS[product_id]["name"].lower()
-    return name in reply.lower() or name.split()[0] in reply.lower()
+    reply = reply.lower()
+    if name in reply:
+        return True
+    first_word = name.split()[0]
+    ambiguous = sum(1 for p in PRODUCTS.values() if p["name"].lower().split()[0] == first_word) > 1
+    return first_word in reply and not ambiguous
 
 
 def evaluate_retrieval_case(case):

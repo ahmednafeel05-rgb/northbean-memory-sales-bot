@@ -24,13 +24,16 @@ LEO_ID = uuid.uuid5(uuid.NAMESPACE_DNS, "northbean:leo")
 
 
 def _post_chat(customer_id, message, retries=4):
+    """Vertex AI's real round-trip latency runs noticeably higher than Groq's (observed ~20s+
+    for a single call, more with tool-calling rounds) -- 60s keeps this from flaking on a slow
+    but successful reply, same reasoning as evals/run_eval.py's own client timeout."""
     data = json.dumps({"message": message, "customer_id": str(customer_id) if customer_id else None}).encode()
     for attempt in range(retries):
         req = urllib.request.Request(
             f"{API_URL}/chat", data=data, headers={"Content-Type": "application/json"}, method="POST"
         )
         try:
-            with urllib.request.urlopen(req, timeout=30) as resp:
+            with urllib.request.urlopen(req, timeout=60) as resp:
                 return json.loads(resp.read())
         except urllib.error.HTTPError as exc:
             if exc.code != 500 or attempt == retries - 1:
